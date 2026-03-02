@@ -7,7 +7,7 @@
 | Name | GitHub | Email |
 |------|--------|-------|
 | Name 1 | [@username](https://github.com/username) | name@sjsu.edu |
-| Name 2 | [@username](https://github.com/username) | name@sjsu.edu |
+| Hoa Tuong Minh Nguyen | [@MinhHoaNguyen](https://github.com/MinhHoaNguyen) | hoatuongminh.nguyen@sjsu.edu |
 | Name 3 | [@username](https://github.com/username) | name@sjsu.edu |
 | Name 4 | [@username](https://github.com/username) | name@sjsu.edu |
 
