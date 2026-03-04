@@ -4,13 +4,21 @@
 
 # These are some settings that I can think of for the plant monitoring use
 ph:
+  min: 6.0
+  max: 7.0
 
 temperature:
+  min: 20
+  max: 30
 
 humidity:
+  min: 40
+  max: 70
 
 camera:
 
 database:
 
-sensors
+sensors:
+  - bme280
+  - ph_sensor
