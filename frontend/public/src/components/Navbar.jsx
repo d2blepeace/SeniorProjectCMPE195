@@ -6,36 +6,37 @@
  *      - Right Side: Latest Update: [Timestamp]
  */
 import React from "react";
-import onlineIcon from "../assets/online.png"
-import offlineIcon from "../assets/offline.png"
-import "./styles/typography.css"
-import "./style/navbar.css"
+import onlineIcon from "../assets/icons/online.png"
+import offlineIcon from "../assets/icons/offline.png"
+import "../styles/typography.css"
+import "../styles/navbar.css"
 
 
 function Navbar({deviceName, status, lastUpdated}) {
+    {/*Determine the status icon based on the connection status*/}
     const statusIcon = status === "online" ? onlineIcon : offlineIcon;
 
     return (
         <nav className="navbar">
-            // TITLE
+            {/* TITLE */}
             <div className="nav-title">
                 Smart Hydroponic Gardening System
             </div>
 
-            // INFO ROW
+            {/* INFO */}
             <div className="nav-info">
-                // name of device
+                {/*NAME OF DEVICE*/}
                 <div className="nav-item">
                     <span>{deviceName}</span>
                 </div>
 
-                // status icon and status of device
+                {/* status icon and status of device*/}
                 <div className="nav-item">
                     <img src={statusIcon} alt="status" />
                     <span>{status}</span>
                 </div>
-
-                // Last Update with timestamp
+                
+                {/*Last Update with timestamp*/}
                 <div className="nav-item">
                     <span>Last update: {lastUpdated}</span>
                 </div>
