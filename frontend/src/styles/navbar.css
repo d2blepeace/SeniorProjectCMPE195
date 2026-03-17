@@ -32,7 +32,10 @@
     height: 16px;
 }
 .status-online{
+    color: rgb(0, 236, 0);
 }
 
-.status-offline{}
+.status-offline{
+    color: red;
+}
 

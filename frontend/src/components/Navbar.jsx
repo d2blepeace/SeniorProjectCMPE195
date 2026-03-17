@@ -13,8 +13,11 @@ import "../styles/navbar.css"
 
 
 function Navbar({deviceName, status, lastUpdated}) {
-    {/*Determine the status icon based on the connection status*/}
+    //Determine the status icon based on the connection status
     const statusIcon = status === "online" ? onlineIcon : offlineIcon;
+    const statusClass = status === "online" ? "status-online" : "status-offline";
+    // Current time for latest update 
+    const currTime = new Date().toLocaleTimeString();                
 
     return (
         <nav className="navbar">
@@ -32,13 +35,13 @@ function Navbar({deviceName, status, lastUpdated}) {
 
                 {/* status icon and status of device*/}
                 <div className="nav-item">
-                    <img src={statusIcon} alt="status" />
-                    <span>{status}</span>
+                    <img src={statusIcon} alt={status} />
+                    <span className={statusClass}>{status}</span>
                 </div>
                 
                 {/*Last Update with timestamp*/}
                 <div className="nav-item">
-                    <span>Last update: {lastUpdated}</span>
+                    <span>Last update: {currTime}</span>
                 </div>
             </div>
         </nav>
