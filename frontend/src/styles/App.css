@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.dashboard {
+  padding: 24px;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
