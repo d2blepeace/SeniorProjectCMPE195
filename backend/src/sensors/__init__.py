@@ -8,9 +8,9 @@ from .sensor_manager import SensorManager
 from .sensor_factory import SensorFactory
 
 __all__ = [
-    'BaseSensor',
-    'SensorManager',
-    'SensorFactory',
+    "BaseSensor",
+    "SensorManager",
+    "SensorFactory",
 ]
 
-__version__ = '1.0.0'
+__version__ = "1.0.0"
