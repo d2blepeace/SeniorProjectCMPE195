@@ -1,7 +1,7 @@
 .sensor-card {
     width: 150px;
-    min-height: 120px;
-    padding: 20px;
+    height: 150px;
+    padding: 30px;
     border-radius: 16px;
 
     background: rgba(255, 255, 255, 0.05);
@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
 
-    gap: 14px;
+    gap: 15px;
     text-align: center;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 
@@ -62,7 +62,7 @@
 }
 
 .sensor-card.normal .sensor-status {
-    border-color: rgba(46, 204, 113, 0.2);
+    background: rgba(46, 204, 113, 0.2);
     border: 1px solid #1afb1a;
 }
 
@@ -74,4 +74,17 @@
 .sensor-card.danger .sensor-status {
     background: rgba(231, 76, 60, 0.2);
     border: 1px solid red;
+}
+
+/* VALUE COLOR */
+.sensor-card.normal .sensor-value {
+    color: #1afb1a;
+}
+
+.sensor-card.warning .sensor-value {
+    color: #ffa200;
+}
+
+.sensor-card.danger .sensor-value {
+    color: red;
 }

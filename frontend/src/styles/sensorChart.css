@@ -1,0 +1,83 @@
+.sensor-chart-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.sensor-chart-card {
+    min-height: 50px;
+    padding: 20px;
+    border-radius: 18px;
+    cursor: pointer;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.sensor-chart-card:hover {
+    transform: translateY(-5px);
+}
+
+.sensor-chart-card.expanded {
+    grid-column: 1/ -1;
+    min-height: 120px;
+    padding: 20px;
+}
+
+.sensor-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.sensor-chart-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.expand-hint {
+    font-size: 0.8rem;
+    opacity: 0.75;
+}
+
+.sensor-chart-body {
+    flex: none;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-svg {
+    width: 100%;
+    height: 120px;
+    color: #67e8f9
+}
+
+.sensor-chart-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+  .sensor-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sensor-chart-card.expanded {
+    grid-column: auto;
+  }
+}
