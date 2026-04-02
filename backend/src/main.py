@@ -27,33 +27,33 @@ async def lifespan(app: FastAPI):
     # Initialize database
     try:
         await db_manager.initialize()
-        logger.success("✅ Database initialized")
+        logger.success("Database initialized")
     except Exception as e:
-        logger.error(f"❌ Database initialization failed: {e}")
+        logger.error(f"Database initialization failed: {e}")
         raise
 
     # Start background data collection
     try:
         await data_collector.start()
-        logger.success("✅ Background data collection started")
+        logger.success("Background data collection started")
     except Exception as e:
-        logger.error(f"❌ Data collector failed to start: {e}")
+        logger.error(f"Data collector failed to start: {e}")
         raise
 
-    logger.info(f"🌐 API Server: http://{settings.api_host}:{settings.api_port}")
-    logger.info(f"📚 API Docs: http://{settings.api_host}:{settings.api_port}/docs")
-    logger.info(f"🔧 Using {'MOCK' if settings.use_mock_sensors else 'REAL'} sensors")
-    logger.info(f"⏱️  Sensor read interval: {settings.sensor_read_interval} seconds")
+    logger.info(f"API Server: http://{settings.api_host}:{settings.api_port}")
+    logger.info(f"API Docs: http://{settings.api_host}:{settings.api_port}/docs")
+    logger.info(f"Using {'MOCK' if settings.use_mock_sensors else 'REAL'} sensors")
+    logger.info(f"⏱Sensor read interval: {settings.sensor_read_interval} seconds")
 
     yield
 
     # === SHUTDOWN ===
-    logger.info("🛑 Shutting down Smart Hydroponic System...")
+    logger.info("Shutting down Smart Hydroponic System...")
 
     # Stop background data collection
     await data_collector.stop()
 
-    logger.info("👋 Goodbye!")
+    logger.info("Goodbye!")
 
 
 # Create FastAPI app

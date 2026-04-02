@@ -116,7 +116,7 @@ class DataCollector:
 
             if stored_count > 0:
                 logger.debug(
-                    f"✅ Stored {stored_count} readings " f"(total: {self.read_count})"
+                    f"Stored {stored_count} readings " f"(total: {self.read_count})"
                 )
 
         except Exception as e:

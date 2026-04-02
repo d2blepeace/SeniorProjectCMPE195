@@ -6,7 +6,7 @@ An IoT-enabled hydroponic monitoring system with real-time sensor data collectio
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -20,7 +20,7 @@ An IoT-enabled hydroponic monitoring system with real-time sensor data collectio
 
 ---
 
-## 🌱 Overview
+## Overview
 
 The Smart Hydroponic Garden System automates the monitoring of hydroponic growing environments by tracking:
 - **Temperature** (BME280 & BME680 sensors)
@@ -33,18 +33,17 @@ The system stores historical data, provides real-time visualization, and sends a
 
 ---
 
-## ✨ Features
-- ✅ REST API with FastAPI
-- ✅ Mock sensor data generation (development/testing)
-- ✅ Background task auto-reads sensors every 60 seconds
-- ✅ SQLite database with historical data storage
-- ✅ Threshold configurations (plant profiles or custom settings)
-- ✅ Interactive API documentation (Swagger UI)
-- ✅ CORS-enabled for frontend development
+## Features
+- REST API with FastAPI
+- Mock sensor data generation (development/testing)
+- Background task auto-reads sensors every 60 seconds
+- Threshold configurations (plant profiles or custom settings)
+- Interactive API documentation (Swagger UI)
+- CORS-enabled for frontend development
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ### High-Level Overview
 
@@ -127,7 +126,7 @@ Backend Components:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -180,7 +179,7 @@ curl http://localhost:8000/api/health
 
 ---
 
-## 📡 API Reference
+## API Reference
 
 ### Base URL
 ```
@@ -257,7 +256,7 @@ curl -X POST http://localhost:8000/api/configurations/2/activate
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Entity Relationship Diagram
 
@@ -351,7 +350,7 @@ Stores system alerts and notifications.
 
 ---
 
-## 💻 Development
+## Development
 
 ### Project Structure
 
@@ -432,7 +431,7 @@ mypy backend/
 
 ---
 
-## 🔄 Data Flow
+## Data Flow
 
 ### Background Data Collection
 
@@ -526,7 +525,7 @@ mypy backend/
 ```
 ---
 
-## 🚢 Deployment
+## Deployment
 
 ### Development (Current)
 
@@ -578,7 +577,7 @@ sudo systemctl status hydroponic
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Server Won't Start
 
@@ -638,7 +637,7 @@ python -m backend.src.main
 
 **Solution:**
 ```bash
-# Check server logs for "✅ Stored X readings"
+# Check server logs for "Stored X readings"
 # Verify data collector status:
 curl http://localhost:8000/ | jq '.data_collector'
 
@@ -647,7 +646,7 @@ curl http://localhost:8000/ | jq '.data_collector'
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 - **Interactive API Docs:** `http://localhost:8000/docs`
 - **ReDoc API Docs:** `http://localhost:8000/redoc`
@@ -657,13 +656,13 @@ curl http://localhost:8000/ | jq '.data_collector'
 
 ---
 
-## 📝 License
+## License
 
 This project is developed as part of CMPE 195A/B Senior Project at San Jose State University.
 
 ---
 
-## 👥 Team
+##  Team
 
 **Team Expedition 23**
 
@@ -682,7 +681,7 @@ This project is developed as part of CMPE 195A/B Senior Project at San Jose Stat
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - FastAPI framework and community
 - Adafruit for sensor libraries

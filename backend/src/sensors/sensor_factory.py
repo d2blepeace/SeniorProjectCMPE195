@@ -106,7 +106,7 @@ class SensorFactory:
 
             real_map = {"bme280": BME280Real, "bme680": BME680Real, "ph": PHReal}
         except ImportError:
-            print("⚠️  Hardware sensors not available, using all mocks")
+            print("Hardware sensors not available, using all mocks")
             real_map = {}
 
         # Create mock sensors
@@ -119,10 +119,10 @@ class SensorFactory:
         for sensor_id in real_sensors:
             if sensor_id in real_map:
                 sensors[sensor_id] = real_map[sensor_id]()
-                print(f"⚡ Created REAL sensor: {sensor_id}")
+                print(f"Created REAL sensor: {sensor_id}")
             elif sensor_id in mock_map:
                 # Fallback to mock if real not available
                 sensors[sensor_id] = mock_map[sensor_id]()
-                print(f"⚠️  {sensor_id} real sensor not available, using mock")
+                print(f"{sensor_id} real sensor not available, using mock")
 
         return sensors
