@@ -66,8 +66,8 @@ The system stores historical data, provides real-time visualization, and sends a
 │  └──────────────────────────────────────────────────────┘   │
 │                         │                                   │
 │  ┌──────────────────────┴──────────────────────────────┐    │
-│  │                                                      │   │
-│  ▼                                                      ▼   │
+│  │                                                     │    │
+│  ▼                                                     ▼    │
 │  ┌────────────────────┐                  ┌──────────────┐   │
 │  │ Background Task    │                  │   Sensor     │   │
 │  │ (Data Collector)   │◄────────────────►│   Manager    │   │
