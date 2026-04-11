@@ -1,0 +1,89 @@
+/**
+ * ProfileCard to display threshold profile: 
+ *  - name, badge, theshold, action
+ * 
+ * Props:
+ *  - profile: {id, name, description, ph_min, ph_max, temp_min, temp_max
+ *              humidity_min, humidity_max, is_active}
+ *  - onEdit(profile)
+ *  - onDuplicate(profile)
+ *  - onUse(profile)
+ *  - onDelete(profile)
+ */
+
+import React from "react";
+import "../styles/profileCard.css";
+
+function ProfileCard({profile, onEdit, onDuplicate, onUse, onDelete}) {
+    return (
+        <div className={`profile-card ${profile.is_active ? "active-profile" : ""}`}>
+            {/*Top Row: Name + actions */}
+            <div className="profile-top">
+                <div className="profile-info">
+                    <div className="profile-name-row">
+                        <span className="profile-name">{profile.name}</span>
+
+                        {/* Active badge for in-used profile */}
+                        {profile.is_active && (
+                            <span className="active-badge">In Use</span>
+                        )}
+                    </div>
+
+                    {profile.description && (
+                        <p className="profile-desc">{profile.description}</p>
+                    )}
+                </div>
+
+                {/*Action button*/}
+                <div className="profile-actions">
+                    <button className="action-btn" title="Edit" 
+                        onClick={() => onEdit(profile)}>
+                        Edit
+                    </button>
+                
+                    <button className="action-btn" title="Duplicate"
+                        onClick={() => onDuplicate(profile)}>
+                        Duplicate
+                    </button>
+
+                    {/*Apply - hidden if already in used */}
+                    {!profile.is_active && (
+                        <button className="action-btn apply" title="Use this profile"
+                            onClick={() => onUse(profile)}>
+                            Use
+                        </button>
+                    )}
+
+                    {/*Delete - hidden if in used*/}
+                    {!profile.is_active && (
+                        <button className="action-btn danger" title="Delete"
+                            onClick={() => onDelete(profile)}>
+                            Delete
+                        </button>
+                    )}
+                </div>
+            </div>
+            
+            {/*Threshold ranges*/}
+            <div className="threshold-gird">
+                <div className="threshold-item ph">
+                    <div className="threshold-label">pH</div>
+                    <div className="threshold-range">{profile.ph_min} - {profile.ph_max}</div>
+                </div>
+
+                <div className="threshold-item temp">
+                    <div className="threshold-label">Temperature</div>
+                    <div className="threshold-range">{profile.temp_min}° – {profile.temp_max}°C</div>
+                </div>
+
+                <div className="threshold-item hum">
+                    <div className="threshold-label">Humidity</div>
+                    <div className="threshold-range">{profile.humidity_min} - {profile.humidity_max}%</div>
+                </div>
+            </div>
+        </div>
+    );
+
+}
+
+export default ProfileCard;
