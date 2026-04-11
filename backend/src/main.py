@@ -22,7 +22,7 @@ async def lifespan(app: FastAPI):
     Startup and shutdown events
     """
     # === STARTUP ===
-    logger.info("🚀 Starting Smart Hydroponic System...")
+    logger.info("Starting Smart Hydroponic System...")
 
     # Initialize database
     try:
@@ -43,7 +43,7 @@ async def lifespan(app: FastAPI):
     logger.info(f"API Server: http://{settings.api_host}:{settings.api_port}")
     logger.info(f"API Docs: http://{settings.api_host}:{settings.api_port}/docs")
     logger.info(f"Using {'MOCK' if settings.use_mock_sensors else 'REAL'} sensors")
-    logger.info(f"⏱Sensor read interval: {settings.sensor_read_interval} seconds")
+    logger.info(f"Sensor read interval: {settings.sensor_read_interval} seconds")
 
     yield
 
