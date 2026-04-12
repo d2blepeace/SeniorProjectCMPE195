@@ -14,10 +14,10 @@
 import React, {useState} from "react";
 import "../styles/profileModal.css";
 
-function ProfileModal() {
+function ProfileModal({profile, onSave, onClose}) {
     // Local copy of form data, edit dont effect parent until click save
     const [form, setForm] = useState({...profile});
-    const isEdit = !!profile_id;
+    const isEdit = !!profile.id;
 
     // update text field
     const updateField = (key, value) => {
@@ -38,7 +38,7 @@ function ProfileModal() {
     };
 
     return (
-        <div className="modal-overlay" onClick={onclose}>
+        <div className="modal-overlay" onClick={onClose}>
             <div className="modal-box" onClick={(e) => e.stopPropagation()}>
                 <h2 className="modal-title">
                     {isEdit ? "Edit Profile" : "Create New Profile"}
@@ -126,7 +126,7 @@ function ProfileModal() {
                     </div>
                 </div>
 
-                <div className="modal-fotter">
+                <div className="modal-footer">
                     <button className="btn-cancel" onClick={onClose}>
                         Cancel
                     </button>
