@@ -3,11 +3,21 @@ Real BME680 sensor implementation for Raspberry Pi
 Reads temperature, humidity, pressure, and air quality via I2C
 """
 import asyncio
+import time
 import board
 import adafruit_bme680
 from datetime import datetime
 from typing import Dict, Any
-from ..base_sensor import BaseSensor
+
+# Try relative import, fall back to absolute for testing
+try:
+    from ..base_sensor import BaseSensor
+except ImportError:
+    import sys
+    from pathlib import Path
+    project_root = Path(__file__).resolve().parent.parent.parent.parent.parent
+    sys.path.insert(0, str(project_root))
+    from backend.src.sensors.base_sensor import BaseSensor
 
 
 class BME680Real(BaseSensor):
@@ -29,6 +39,13 @@ class BME680Real(BaseSensor):
             
             # Configure sensor
             self.sensor.sea_level_pressure = 1013.25
+            
+            # Warm-up: discard first reading
+            time.sleep(0.5)  # Let sensor stabilize
+            _ = self.sensor.temperature    # Dummy read
+            _ = self.sensor.humidity       # Dummy read
+            _ = self.sensor.pressure       # Dummy read
+            _ = self.sensor.gas            # Dummy read
             
             self.is_initialized = True
             print(f"BME680 initialized at address 0x{i2c_address:02x}")
