@@ -24,9 +24,9 @@ class SensorFactory:
         """
         if use_mock:
             # Import mock sensors
-            from .mock.bme280 import BME280Mock
-            from .mock.bme680 import BME680Mock
-            from .mock.ph import PHMock
+            from .mock.bme280_mock import BME280Mock
+            from .mock.bme680_mock import BME680Mock
+            from .mock.ph_mock import PHMock
 
             print("🔧 Using MOCK sensors (development mode)")
 
@@ -34,9 +34,9 @@ class SensorFactory:
         else:
             # Import real hardware sensors
             try:
-                from .hardware.bme280_real import BME280Real
-                from .hardware.bme680_real import BME680Real
-                from .hardware.ph_real import PHReal
+                from .hardware.bme280 import BME280Real
+                from .hardware.bme680 import BME680Real
+                from .hardware.ph import PHReal
 
                 print("⚡ Using REAL hardware sensors (production mode)")
 
