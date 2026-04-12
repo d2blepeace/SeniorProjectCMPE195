@@ -1,0 +1,22 @@
+.toast {
+    position: fixed; bottom: 24px; right: 24px;
+    padding: 12px 20px; border-radius: 8px;
+    font-size: 0.85rem; font-weight: 500; z-index: 200;
+    animation: toastSlideUp 0.3s ease, toastFadeOut 0.3s ease 2.2s forwards;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.toast.success { 
+    background: rgba(26, 251, 26, 0.15); 
+    border: 1px solid #1afb1a; 
+    color: #1afb1a; 
+}
+.toast.error { 
+    background: rgba(231, 76, 60, 0.15); 
+    border: 1px solid red; 
+    color: red; }
+
+@keyframes toastSlideUp { 
+    from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } 
+}
+@keyframes toastFadeOut { to { opacity: 0; transform: translateY(-8px); }}
