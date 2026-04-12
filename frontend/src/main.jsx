@@ -8,7 +8,7 @@ import AppDemo from "./AppDemo.jsx";
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <div>
-      <App />  
+      <AppDemo />  
     </div>
   </StrictMode>,
 )

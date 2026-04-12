@@ -8,66 +8,69 @@ import { useState } from "react";
 import "./styles/App.css";
 
 import Navbar from "./components/Navbar.jsx";
-import SensorCard from "./components/SensorCard.jsx";
-import SensorChart from "./components/SensorChart.jsx";
 import TabBar from "./components/TabBar.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 import ProfileCard from "./components/ProfileCard.jsx";
 import ProfileModal from "./components/ProfileModal.jsx";
 import ConfirmDialog from "./components/ConfirmDialog.jsx";
 import Toast from "./components/Toast.jsx";
 
 import "./styles/settings.css";
+
 /**
  * MOCK DATA
  * These simulate what the backend would return.
  * Switch to App.jsx, this data comes from the API instead.
  */
-
-
 const MOCK_PROFILES = [
     {
         id: 1,
         name: "Lettuce",
         description: "Optimal ranges for leafy greens",
-        ph_min: 5.5,
-        ph_max: 6.5,
-        temp_min: 15,
-        temp_max: 25,
-        humidity_min: 50,
-        humidity_max: 70,
+        ph_min: 5.5, ph_max: 6.5,
+        temp_min: 15, temp_max: 25,
+        humidity_min: 50, humidity_max: 70,
         is_active: true,
     },
     {
         id: 2,
         name: "Tomato",
         description: "For fruiting vegetables",
-        ph_min: 5.8,
-        ph_max: 6.8,
-        temp_min: 20,
-        temp_max: 30,
-        humidity_min: 60,
-        humidity_max: 80,
+        ph_min: 5.8, ph_max: 6.8,
+        temp_min: 20, temp_max: 30,
+        humidity_min: 60, humidity_max: 80,
         is_active: false,
     },
     {
         id: 3,
         name: "Basil",
         description: "Herb-optimized profile",
-        ph_min: 5.5,
-        ph_max: 6.5,
-        temp_min: 18,
-        temp_max: 28,
-        humidity_min: 40,
-        humidity_max: 60,
+        ph_min: 5.5, ph_max: 6.5,
+        temp_min: 18, temp_max: 28,
+        humidity_min: 40, humidity_max: 60,
         is_active: false,
     },
 ];
 
+/** Mock sensor readings */
+const MOCK_CURRENT = {
+    temperature: 30,
+    humidity: 49.9,
+    ph: 6.9,
+};
+
+/** Mock chart history */
+const MOCK_CHARTS = {
+    temperature: { data: [21, 24, 25, 26, 28, 27, 29] },
+    humidity:    { data: [33, 55, 58, 60, 57, 62] },
+    ph:          { data: [4.0, 6.1, 6.3, 6.5, 6.4] },
+};
+
 function AppDemo() {
-    //  Tab state 
+    // Tab state
     const [activeTab, setActiveTab] = useState("dashboard");
 
-    //  Settings state (local mock — no API calls) 
+    // Settings state (local mock — no API calls)
     const [profiles, setProfiles] = useState(MOCK_PROFILES);
     const [modalOpen, setModalOpen] = useState(false);
     const [editingProfile, setEditingProfile] = useState(null);
@@ -77,23 +80,36 @@ function AppDemo() {
     // Find the active profile — used by both Dashboard and Settings
     const activeProfile = profiles.find((p) => p.is_active) || null;
 
-    //  Toast helper 
+    // Build thresholds object from active profile for Dashboard
+    const thresholds = {
+        temperature: {
+            min: activeProfile?.temp_min ?? 24,
+            max: activeProfile?.temp_max ?? 33,
+        },
+        humidity: {
+            min: activeProfile?.humidity_min ?? 50,
+            max: activeProfile?.humidity_max ?? 80,
+        },
+        ph: {
+            min: activeProfile?.ph_min ?? 5.5,
+            max: activeProfile?.ph_max ?? 7.0,
+        },
+    };
+
+    // Toast helper
     const showToast = (message, type = "success") => {
         setToast({ message, type });
         setTimeout(() => setToast(null), 2500);
     };
 
-    //  Settings CRUD handlers 
+    // Settings CRUD handlers
     const handleCreate = () => {
         setEditingProfile({
             name: "",
             description: "",
-            ph_min: 5.5,
-            ph_max: 6.5,
-            temp_min: 18,
-            temp_max: 28,
-            humidity_min: 50,
-            humidity_max: 70,
+            ph_min: 5.5, ph_max: 6.5,
+            temp_min: 18, temp_max: 28,
+            humidity_min: 50, humidity_max: 70,
         });
         setModalOpen(true);
     };
@@ -106,7 +122,7 @@ function AppDemo() {
     const handleDuplicate = (profile) => {
         const dup = {
             ...profile,
-            id: Date.now(),  // simple unique ID for mock
+            id: Date.now(),
             name: `${profile.name} (Copy)`,
             is_active: false,
         };
@@ -156,60 +172,21 @@ function AppDemo() {
         setEditingProfile(null);
     };
 
-    // Render 
+    // Render
     return (
         <>
             <Navbar deviceName="Raspberry Pi 5" status="online" />
             <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
 
             {activeTab === "dashboard" ? (
-                // Dashboard Tab 
-                // Sensor cards use the active profile's thresholds
-                <main className="dashboard">
-                    <section className="card-grid">
-                        <SensorCard
-                            title="Temperature"
-                            value={30}
-                            unit=" °C"
-                            min={activeProfile?.temp_min ?? 24}
-                            max={activeProfile?.temp_max ?? 33}
-                        />
-                        <SensorCard
-                            title="Humidity"
-                            value={49.9}
-                            unit=" %"
-                            min={activeProfile?.humidity_min ?? 50}
-                            max={activeProfile?.humidity_max ?? 80}
-                        />
-                        <SensorCard
-                            title="pH"
-                            value={6.9}
-                            unit=""
-                            min={activeProfile?.ph_min ?? 5.5}
-                            max={activeProfile?.ph_max ?? 7.0}
-                        />
-                    </section>
-
-                    <section className="sensor-chart-grid" style={{ marginTop: "40px" }}>
-                        <SensorChart
-                            title="Temperature Chart"
-                            unit="°C"
-                            data={[21, 24, 25, 26, 28, 27, 29]}
-                        />
-                        <SensorChart
-                            title="Humidity Chart"
-                            unit="%"
-                            data={[33, 55, 58, 60, 57, 62]}
-                        />
-                        <SensorChart
-                            title="pH Chart"
-                            unit=""
-                            data={[4.0, 6.1, 6.3, 6.5, 6.4]}
-                        />
-                    </section>
-                </main>
+                // Dashboard Tab — uses the same Dashboard page component
+                <Dashboard
+                    current={MOCK_CURRENT}
+                    thresholds={thresholds}
+                    charts={MOCK_CHARTS}
+                />
             ) : (
-                // setting tab
+                // Settings Tab
                 <main className="dashboard">
                     <div className="settings-page">
                         <div className="settings-header">
