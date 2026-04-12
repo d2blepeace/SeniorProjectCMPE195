@@ -1,0 +1,41 @@
+/* This class will handle styling of Navbar.jsx*/
+.navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 12;
+    color: whitesmoke;
+    border-bottom: 1px solid aqua;
+}
+
+.nav-title{
+    font-size: 1.8rem;    
+    letter-spacing: 0.5px;
+}
+
+.nav-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.nav-item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.nav-item img {
+    width: 16px;
+    height: 16px;
+}
+.status-online{
+    color: #1afb1a;
+}
+
+.status-offline{
+    color: red;
+}
+

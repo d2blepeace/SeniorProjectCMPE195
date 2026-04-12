@@ -1,0 +1,38 @@
+/* This class will handle the font of the system */
+
+/*Register fontface*/
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat/static/Monserrat-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat/static/Monserrat-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+}
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat/static/Monserrat-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Space Mono";
+    src: url("../assets/fonts/Space_Mono/SpaceMono-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Space Mono";
+    src: url("../assets/fonts/Space_Mono/SpaceMono-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+/*Font Utilities*/
+.title-font{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+.body-font{
+    font-family: "Space Mono", monospace;
+}

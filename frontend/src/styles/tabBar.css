@@ -1,0 +1,50 @@
+/*
+ * Uses the same color palette as the rest of the app:
+ *  - aqua/cyan (#67e8f9) for the active tab accent
+ *  - rgba white backgrounds for glassmorphism consistency
+ *  - whitesmoke text for inactive tabs
+*/
+
+.tab-bar {
+    display: flex;
+    gap: 2px;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tab-btn{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: #397881;
+    font-size: 0.95rem;                     /*Adjust to downloaded font alter*/
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s ease;
+    position: relative; 
+}
+
+.tab-btn:hover {
+    color: whitesmoke;
+    background: rgba(103, 232, 249, 0.08);;
+}
+
+.tab-btn.active {
+    color: #67e8f9;
+    background: rgba(103, 232, 249, 0.08);
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #67e8f9;
+    border-radius: 2px 2px 0 0;
+}
