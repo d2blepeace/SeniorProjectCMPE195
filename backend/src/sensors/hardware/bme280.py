@@ -3,6 +3,7 @@ Real BME280 sensor implementation for Raspberry Pi
 Reads temperature, humidity, and pressure via I2C
 """
 import asyncio
+import time
 import board
 import adafruit_bme280.advanced as adafruit_bme280
 from datetime import datetime
@@ -36,6 +37,12 @@ class BME280Real(BaseSensor):
             self.sensor.overscan_pressure = adafruit_bme280.OVERSCAN_X16
             self.sensor.overscan_humidity = adafruit_bme280.OVERSCAN_X2
             self.sensor.overscan_temperature = adafruit_bme280.OVERSCAN_X8
+            
+            # Warm-up: discard first reading
+            time.sleep(0.5)  # Let sensor stabilize
+            _ = self.sensor.temperature  # Dummy read
+            _ = self.sensor.pressure     # Dummy read
+            _ = self.sensor.humidity     # Dummy read
             
             self.is_initialized = True
             print(f"BME280 initialized at address 0x{i2c_address:02x}")
