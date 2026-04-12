@@ -84,7 +84,6 @@ export async function fetchActiveConfiguration() {
  * These call the backend endpoints in: backend/src/api/routes/configurations.py
  */
 
-
 /**
  * Create a new threshold configuration profile
  * POST /api/configurations/
