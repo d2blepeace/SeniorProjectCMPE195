@@ -1,0 +1,509 @@
+[33mcommit 2c02681faca83283d41812cf20cb5384cd4b394b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Vy Tran <vylophuong.tran@sjsu.edu>
+Date:   Sun Apr 12 15:47:46 2026 -0700
+
+    Add structured logging and graceful hardware fallback for pH sensor
+
+[33mcommit cec114681591a4cc360bcfcd95ccc2d8d7bbd257[m
+Author: Vy Tran <vylophuong.tran@sjsu.edu>
+Date:   Sun Apr 12 15:13:26 2026 -0700
+
+    resolved import issues from last test
+
+[33mcommit 1eec5dde8c79c1f17505f0c7369961e56cccd61a[m
+Author: Vy Tran <vylophuong.tran@sjsu.edu>
+Date:   Sun Apr 12 15:03:42 2026 -0700
+
+    Updated imports
+
+[33mcommit ee42f594f3822b54d308592ee40c8ec1e831e079[m
+Author: Vy Tran <vylophuong.tran@sjsu.edu>
+Date:   Sun Apr 12 14:20:09 2026 -0700
+
+    Added a warm-up period for bme680 to account for initial calibration
+
+[33mcommit 649f390ce22de8f51cedf6d636d692b7c7afccd4[m
+Author: Vy Tran <vylophuong.tran@sjsu.edu>
+Date:   Sun Apr 12 14:12:04 2026 -0700
+
+    Added a warm-up period for bme280 to account for initial calibration
+
+[33mcommit 7bad4ef01a429501c42d460101c7f6be26c3250d[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: be870fe f14275c
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 21:53:15 2026 -0700
+
+    Merge Dashboard and Setting tab feature into main
+
+[33mcommit f14275c105cd63b24bab181d0949bda450e530e8[m[33m ([m[1;31morigin/feature/setting-tab[m[33m)[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 21:48:07 2026 -0700
+
+    Put all dashboard into a page so app and main can load less
+
+[33mcommit 23d7dc3ebf3ccf231f4a822e46c20544d47eb900[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 21:25:37 2026 -0700
+
+    Adjust the app.jsx so that setting tab will still load even dashboard is not
+
+[33mcommit a01a16819bae1c3a1f6e46a1e5202efb06079297[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 21:18:57 2026 -0700
+
+    Adjust styling and fix Edit bug in Setting
+
+[33mcommit 44bfa27bcc2449b89ac4391d0cc7c1b13ed41780[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 20:51:03 2026 -0700
+
+    adjust confrim Dialog
+
+[33mcommit 0674ced7c0cd460ad20c26768ecbc8455f858573[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 20:48:25 2026 -0700
+
+    Switch to real App.jsx in main
+
+[33mcommit bdcc3804d4b33a7cebf20261e28f3a38a4c78923[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 20:35:15 2026 -0700
+
+    adjsut comments
+
+[33mcommit a89e3f0c8982fc0382ccb959133399f4e507bb74[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 20:34:38 2026 -0700
+
+    Integrate new Setting page
+
+[33mcommit 7de887ace7585d2578b5261f75e7ef9b8be6d38e[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 20:21:56 2026 -0700
+
+    edit styling
+
+[33mcommit 454a0ec36c67135b01c4627060cef5b663b01853[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 20:20:43 2026 -0700
+
+    added success toast popup
+
+[33mcommit 21f8cf3ca7d8c7ab8a417d0f0d6869bf5784b808[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 20:13:53 2026 -0700
+
+    Added confirm dialog for setting form
+
+[33mcommit be870fe40a40632862ed44ff452f61bdfe4617e9[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Sat Apr 11 19:35:25 2026 -0700
+
+    Add real sensor implementations for Raspberry Pi
+
+[33mcommit 19e32aaf496c7bb1d70e6ae8679d13c732bcc65e[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 19:19:27 2026 -0700
+
+    Added ProfileModal and styling
+
+[33mcommit f9392c71ba3ed45a08bd51ddaea3852ff6bbcb9e[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 04:12:38 2026 -0700
+
+    Added profile card and its styling
+
+[33mcommit 35d9669d0899abaec652ea3789c54c5a4e2065f7[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 03:31:18 2026 -0700
+
+    Add TabBar and its styling to interface
+
+[33mcommit c185640bf1f43d2589fe767321403ea436e341ed[m
+Merge: b3c379c 182d80a
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 02:57:44 2026 -0700
+
+    Merge branch 'main' of https://github.com/SJSU-CMPE-195/group-project-expedition-23
+
+[33mcommit b3c379cd65f850a71755b41921f24f37e3211f13[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Sat Apr 11 02:57:17 2026 -0700
+
+    Adjust the comment
+
+[33mcommit c7b53ce906b68de00afd0dd8a3a39ad62672a598[m[33m ([m[1;31morigin/feature/frontend-dashboard[m[33m)[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Fri Apr 10 20:30:07 2026 -0700
+
+    edit gitignore
+
+[33mcommit c777cce93d554425b3d2b8cd08a7b412b631fd84[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Fri Apr 10 20:29:20 2026 -0700
+
+    remove cached .env
+
+[33mcommit 182d80a035314a011fe82e8e40b52453f87d6d91[m
+Author: vlotran <vylophuong.tran@sjsu.edu>
+Date:   Thu Apr 2 20:16:36 2026 -0700
+
+    Update README.md
+
+[33mcommit 0ad17e6ff1ce6f94809a343d70b3ddfa21f2b89d[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 20:04:32 2026 -0700
+
+    Add AppDemo for running frontend on mocking data
+
+[33mcommit 19e1436d61c12a159f21249dd1588c4ca863b0a7[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 20:00:21 2026 -0700
+
+    Refractor name
+
+[33mcommit 03030d40b531725877d83be238bf2ee0a29ee30a[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 19:50:16 2026 -0700
+
+    added useDashboardData.js to feed data to UI
+
+[33mcommit 0472a8a17ce3e690bd2094fb52095bf2af46767f[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 16:09:29 2026 -0700
+
+    remove redundant frontend files
+
+[33mcommit cfc023145b087b725915181e64ab5eda7da87b85[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 16:07:37 2026 -0700
+
+    transformer to conver backend data to frontend data
+
+[33mcommit 0b99f28746180825dab281468df3044067609b67[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 16:03:36 2026 -0700
+
+    add api.js to as an api to backend from frontend
+
+[33mcommit de1b639fdc6d87bbb528cf0e5c9febc039a718b1[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 15:54:47 2026 -0700
+
+    Fix dependencies and update tailwind
+
+[33mcommit a11b124a1469f6e5fb5cddb6f46de7357815a3ba[m
+Merge: d5cf997 a1e606d
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 15:45:57 2026 -0700
+
+    Merge main into frontend and resolved conflicts
+
+[33mcommit a1e606d498f7e6f868225918c97c131218d168c3[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Apr 2 15:22:56 2026 -0700
+
+    Cleanup code and comments
+
+[33mcommit 43a42c8ba7307ef964b2bcb56acc9170b241186b[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Wed Apr 1 00:16:46 2026 -0700
+
+    Updated README
+
+[33mcommit 09b9a2c277ed33232fdc37ebaa0d6fe2f05acf5e[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Tue Mar 31 23:41:43 2026 -0700
+
+    Add complete FastAPI backend with background data collection
+    
+    - REST API with CRUD operations for sensors, configurations, and alerts
+    - Background task auto-reads mock sensors every 60 seconds
+    - SQLite database with historical data storage
+    - Interactive API documentation at /docs
+    - CORS enabled for frontend development
+    - Pi-ready architecture (sensor factory pattern)
+    - Auto-populating database for immediate frontend testing
+
+[33mcommit 9bb5e6e0913da71329f6219f340c841a4af666a8[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Tue Mar 31 22:26:08 2026 -0700
+
+    Remove settings.yaml (replaced by database configurations)
+
+[33mcommit bfb6a5c0728a0ac4a9a6f0bf3c788df18daffda1[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Tue Mar 31 22:15:23 2026 -0700
+
+    Add database layer with threshold configurations
+    
+    Database Schema:
+    - Sensor readings table with indexes
+    - Threshold configurations (flexible plant/system profiles)
+    - Alerts table with severity levels
+    - System settings table
+    
+    Database Manager:
+    - CRUD operations for sensor readings
+    - Configuration management (get, create, update, delete, activate)
+    - Alert management
+    - Historical data queries with filtering
+    - Data cleanup utilities
+    
+    Pydantic Models:
+    - Request/response validation models
+    - Threshold configuration models (supports plant or system profiles)
+    - Sensor reading models (BME280, BME680, pH)
+    - Alert models
+    
+    Features:
+    - Only one active configuration at a time (enforced by trigger)
+    - Hybrid naming: supports both plant types and custom system configs
+    - Default configurations provided as templates
+    - Comprehensive error handling and logging
+
+[33mcommit 3b0babebcb9f4a616cf1bc7ee3ec606aa9ec83c9[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Tue Mar 31 21:11:29 2026 -0700
+
+    Add sensor layer with mock implementations
+    
+    - Add base sensor abstract class
+    - Implement mock sensors (BME280, BME680, pH)
+    - Add sensor manager for coordinating reads
+    - Add sensor factory for mock/real switching
+    - Add configuration management (settings.py)
+    - Add centralized logging (logger.py)
+    - Sensors ready for API integration
+
+[33mcommit 7d21da797f1c820d9ac0219f089fdfeeb0676feb[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Tue Mar 31 19:42:28 2026 -0700
+
+    Added root level requirements.txt, .env.example, and .gitignore files
+
+[33mcommit d5cf9975deefc5352f808280a5340a9bdb07f74b[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 31 19:00:28 2026 -0700
+
+    adjust navbar styling
+
+[33mcommit c7a48aaed3336c3558cdc58d1da8ee4591b32ccb[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 31 18:59:53 2026 -0700
+
+    Added SensorChart to dashboard
+
+[33mcommit d5a50df21dc1ea943a874d75074f7a7e25e9135d[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 31 18:59:07 2026 -0700
+
+    Add SensorChart component
+
+[33mcommit 4a2e799f27c0d56ddef69a669b1f5572b1b1fdeb[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 31 18:58:24 2026 -0700
+
+    Complete mocking logic for sensor card of dashboard
+
+[33mcommit 7845e0dcc87ce9030ff61d26ccae24b26fab093a[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Mar 26 21:44:35 2026 -0700
+
+    styling for sensor card
+
+[33mcommit 3a46367a7e7d7b0e14cf7b1fc5705a14dcd77cf2[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Thu Mar 26 21:43:48 2026 -0700
+
+    Added SensorCard script
+
+[33mcommit 61ed2545fd6e4cc8171d173f1eee72eafccab1a5[m
+Merge: ed352ae 6d44a97
+Author: HoaTMNguyen <108551052+MinhHoaNguyen@users.noreply.github.com>
+Date:   Sun Mar 22 14:48:21 2026 -0700
+
+    Merge pull request #1 from SJSU-CMPE-195/Minh
+    
+    update frontend
+
+[33mcommit 6d44a9773088a66d56859337084f4a38198f9168[m[33m ([m[1;31morigin/Minh[m[33m)[m
+Author: Hoa Nguyen <hoatuongminh@gmail.com>
+Date:   Sun Mar 22 14:45:20 2026 -0700
+
+    update frontend
+
+[33mcommit 9dd70039e598b5985fc49f824115134070811874[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 16 18:45:58 2026 -0700
+
+    Fix the render of app.jsx and main.jsx
+
+[33mcommit 26432ac483383878188be29a27e19ecfdeec7cb4[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 16 18:16:44 2026 -0700
+
+    Added the correct code for dashboard
+
+[33mcommit 4c21f4c2e5616cb7717221de1ed55cbccb9d1b5b[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 16 18:14:24 2026 -0700
+
+    Remove redundant code
+
+[33mcommit 041c556dd5aab098a950665b356d59edeec5a47f[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 16 18:11:05 2026 -0700
+
+    Delete redundant src directory
+
+[33mcommit ed352ae2b83e87e07afa4669bb957f2ca9e1ec5d[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 16 18:09:53 2026 -0700
+
+    Delete the redundant src directory, real one should be inside backend/src
+
+[33mcommit f97b8e4639ec1c90daf0cdbb8acf9caecd241334[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 16 18:06:29 2026 -0700
+
+    fix the directory path
+
+[33mcommit 5eb348d489ae0bdbf98eb0776b7c4baa3cf09eaa[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 10 18:13:41 2026 -0700
+
+    Read this before using frontend
+
+[33mcommit 7636cdfaf655ea64d44b490b7783614dc9b315f5[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 10 18:04:04 2026 -0700
+
+    css files for the dashboard
+
+[33mcommit 2ccebb4cab1cf2425525c8efcf3fb152569d646e[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 10 18:03:21 2026 -0700
+
+    main.jsx will be used to test the dashboard interface, use 'npm run dev'
+
+[33mcommit 86e68ceaf61bbda113d7cc440c28fe0bfc571274[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 19:13:10 2026 -0700
+
+    Created and Reorganized React environment
+
+[33mcommit 23ccbc2dc39c3dc92f36ec687549d1693c4ee355[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 18:57:33 2026 -0700
+
+    Working directory for all .css for styling frontend
+
+[33mcommit 69ca593632088ed0d1e617f813a668c53761a241[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 18:56:54 2026 -0700
+
+    Adjust the property of navBar and comments
+
+[33mcommit 974f784a4ae4a06a8db55c30ae4d3acfaaf27fe9[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 18:56:10 2026 -0700
+
+    Added heading and body fonts
+
+[33mcommit 5ea2c41ba4883f9fa8e7ab72136cdb3d6d686b46[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 17:22:01 2026 -0700
+
+    some setting for top navigation bar of dashboard
+
+[33mcommit 2bcbc232f4cd3ad38f3911790dd8a34b959eaaca[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 17:20:59 2026 -0700
+
+    styling css directory of the system
+
+[33mcommit 786851eabf8a31f4f3aec755543f939e1ed03300[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 17:20:22 2026 -0700
+
+    assets directory of the frontend
+
+[33mcommit a0958626cce5d1d2f5aca465eda48404863c5050[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 16:12:09 2026 -0700
+
+    this will be our frontend directory
+
+[33mcommit 518c6bdacbe1036e2003711389bf627f70c5beff[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 16:11:03 2026 -0700
+
+    reorganize backend directories
+
+[33mcommit 0b4c8a055bd374bcf1cec7390049927a2064ffe8[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Mon Mar 9 16:04:08 2026 -0700
+
+    move database.py to src/storage
+
+[33mcommit 7c866a51dde226f1681e4d05577f4ca035fd08cb[m
+Author: Hoa Nguyen <hoatuongminh@gmail.com>
+Date:   Wed Mar 4 07:38:25 2026 -0800
+
+    Update sensor modules and add database file for plant monitor
+
+[33mcommit 8399ea2e81ebc74d04e41acc524e2f9890a09830[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 3 15:52:46 2026 -0800
+
+    Added .py classes for the sensors in our lists
+
+[33mcommit 89b822129d5af732288804dea9d5c2f70c970f82[m
+Merge: 6ce8eb2 9a66597
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 3 15:48:30 2026 -0800
+
+    Merge branch 'main' of https://github.com/SJSU-CMPE-195/group-project-expedition-23
+
+[33mcommit 6ce8eb251469fa427eb8ff566aa077f6872a2025[m
+Author: Thai Nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Tue Mar 3 15:47:42 2026 -0800
+
+    this will separate configuration from our code. Need to install libraries
+
+[33mcommit 9a665972033f7cd2426595e6461556e39d6508b4[m
+Author: MinhHoaNguyen <108551052+MinhHoaNguyen@users.noreply.github.com>
+Date:   Sun Mar 1 21:37:01 2026 -0800
+
+    Update README_195.md
+
+[33mcommit c5257386f7159b0025d152f92dcea4083e880c79[m
+Author: thai_nguyen <nguyenhoathai.nht@gmail.com>
+Date:   Fri Feb 27 11:09:17 2026 -0800
+
+    add config - Thai
+
+[33mcommit 4c06c98e1f26d345c7f838ef207e42287b538e93[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Fri Feb 27 11:02:39 2026 -0800
+
+    remove .env_ from tracking
+
+[33mcommit 78c4c60a4dd53c169c76210a7b917f9ab08f2174[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Fri Feb 27 10:59:53 2026 -0800
+
+    add config
+
+[33mcommit 85c1d779c2351c3aa9f0c0c86b996f47fdf712dc[m
+Author: vlotran <chief@DESKTOP-2K03N42.localdomain>
+Date:   Fri Feb 27 10:57:54 2026 -0800
+
+    add config
+
+[33mcommit 7364cbb7e10ac541f3cc151d343b12e71c838252[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Fri Feb 6 16:00:48 2026 +0000
+
+    Initial commit

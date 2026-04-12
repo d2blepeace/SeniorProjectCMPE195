@@ -23,8 +23,8 @@ class Settings(BaseSettings):
     database_path: str = "./data/hydroponic.db"
 
     # Sensors
-    use_mock_sensors: bool = True
-    sensor_read_interval: int = 60  # seconds
+    use_mock_sensors: bool = False
+    sensor_read_interval: int = 30  # seconds
 
     # CORS
     allowed_origins: str = "*"
