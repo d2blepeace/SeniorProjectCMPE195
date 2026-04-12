@@ -14,9 +14,12 @@
 .toast.error { 
     background: rgba(231, 76, 60, 0.15); 
     border: 1px solid red; 
-    color: red; }
+    color: red; 
+}
 
 @keyframes toastSlideUp { 
-    from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } 
+    from {transform: translateY(20px); opacity: 0;} to { transform: translateY(0); opacity: 1;} 
 }
-@keyframes toastFadeOut { to { opacity: 0; transform: translateY(-8px); }}
+@keyframes toastFadeOut { to {
+    opacity: 0; transform: translateY(-8px); 
+}}
