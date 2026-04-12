@@ -27,20 +27,23 @@ export default function useSettings() {
 
     // Load all profiles on mount 
     useEffect(() => {
-        async function loadProfiles() {
-            try {
-                setLoading(true);
-                setError(null);
-                const data = await fetchAllConfigurations();
-                setProfiles(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
+    async function loadProfiles() {
+        try {
+            setLoading(true);
+            setError(null);
+            const data = await fetchAllConfigurations();
+            setProfiles(data);
+        } catch (err) {
+            // Backend not running — start with empty list
+            // User can still create profiles in the UI
+            console.warn("Could not load profiles from backend:", err.message);
+            setProfiles([]);
+        } finally {
+            setLoading(false);
         }
-        loadProfiles();
-    }, []);
+    }
+    loadProfiles();
+}, []);
 
     // The one profile where is_active === true
     const activeProfile = profiles.find((p) => p.is_active) || null;

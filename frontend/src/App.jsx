@@ -24,7 +24,11 @@ function App() {
                 <Navbar deviceName="Loading..." status="offline" />
                 <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
                 <main className="dashboard">
-                    <p>Loading dashboard data...</p>
+                    {activeTab === "dashboard" ? (
+                        <p>Loading dashboard data...</p>
+                    ) : (
+                        <Settings />
+                    )}
                 </main>
             </>
         );
@@ -37,7 +41,11 @@ function App() {
                 <Navbar deviceName="System Error" status="offline" />
                 <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
                 <main className="dashboard">
-                    <p>Error: {error}</p>
+                    {activeTab === "dashboard" ? (
+                        <p>Error: {error}</p>
+                    ) : (
+                        <Settings />
+                    )}
                 </main>
             </>
         );
