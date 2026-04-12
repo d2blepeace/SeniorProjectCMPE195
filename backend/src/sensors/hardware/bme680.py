@@ -8,17 +8,8 @@ import board
 import adafruit_bme680
 from datetime import datetime
 from typing import Dict, Any
-
-# Try relative import, fall back to absolute for testing
-try:
-    from ..base_sensor import BaseSensor
-except ImportError:
-    import sys
-    from pathlib import Path
-    project_root = Path(__file__).resolve().parent.parent.parent.parent.parent
-    sys.path.insert(0, str(project_root))
-    from backend.src.sensors.base_sensor import BaseSensor
-
+from ..base_sensor import BaseSensor
+from ...utils.logger import logger
 
 class BME680Real(BaseSensor):
     """Real BME680 sensor via I2C on Raspberry Pi"""
@@ -48,10 +39,10 @@ class BME680Real(BaseSensor):
             _ = self.sensor.gas            # Dummy read
             
             self.is_initialized = True
-            print(f"BME680 initialized at address 0x{i2c_address:02x}")
+            logger.info(f"BME680 initialized at address 0x{i2c_address:02x}")
             
         except Exception as e:
-            print(f"Failed to initialize BME680: {e}")
+            logger.error(f"Failed to initialize BME680: {e}")
             self.sensor = None
             self.is_initialized = False
     
@@ -129,6 +120,6 @@ if __name__ == "__main__":
     async def test():
         sensor = BME680Real()
         reading = await sensor.read()
-        print(f"Reading: {reading}")
+        logger.info(f"Reading: {reading}")
     
     asyncio.run(test())

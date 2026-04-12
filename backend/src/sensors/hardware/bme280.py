@@ -9,6 +9,7 @@ import adafruit_bme280.advanced as adafruit_bme280
 from datetime import datetime
 from typing import Dict, Any
 from ..base_sensor import BaseSensor
+from ...utils.logger import logger
 
 
 class BME280Real(BaseSensor):
@@ -45,10 +46,10 @@ class BME280Real(BaseSensor):
             _ = self.sensor.humidity     # Dummy read
             
             self.is_initialized = True
-            print(f"BME280 initialized at address 0x{i2c_address:02x}")
+            logger.info(f"BME280 initialized at address 0x{i2c_address:02x}")
             
         except Exception as e:
-            print(f"Failed to initialize BME280: {e}")
+            logger.error(f"Failed to initialize BME280: {e}")
             self.sensor = None
             self.is_initialized = False
     
@@ -108,6 +109,6 @@ if __name__ == "__main__":
     async def test():
         sensor = BME280Real()
         reading = await sensor.read()
-        print(f"Reading: {reading}")
+        logger.info(f"Reading: {reading}")
     
     asyncio.run(test())
