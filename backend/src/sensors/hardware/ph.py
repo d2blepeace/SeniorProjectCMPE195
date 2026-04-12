@@ -7,13 +7,14 @@ import time
 from datetime import datetime
 from typing import Dict, Any
 from ..base_sensor import BaseSensor
+from ...utils.logger import logger
 
 try:
     import smbus2
     SMBUS_AVAILABLE = True
 except ImportError:
     SMBUS_AVAILABLE = False
-    print("smbus2 not available - install with: pip install smbus2")
+    logger.warning("smbus2 not available - install with: pip install smbus2")
 
 
 class PHReal(BaseSensor):
@@ -29,7 +30,7 @@ class PHReal(BaseSensor):
         super().__init__("ph", "Atlas Scientific pH Sensor")
         
         if not SMBUS_AVAILABLE:
-            print("smbus2 not installed")
+            logger.error("smbus2 not installed")
             self.sensor = None
             self.is_initialized = False
             return
@@ -43,10 +44,10 @@ class PHReal(BaseSensor):
             time.sleep(0.3)
             
             self.is_initialized = True
-            print(f"pH sensor initialized at address 0x{i2c_address:02x}")
+            logger.info(f"pH sensor initialized at address 0x{i2c_address:02x}")
             
         except Exception as e:
-            print(f"Failed to initialize pH sensor: {e}")
+            logger.error(f"Failed to initialize pH sensor: {e}")
             self.sensor = None
             self.is_initialized = False
     
@@ -82,11 +83,14 @@ class PHReal(BaseSensor):
         
         # Get response
         response = self._read_response()
+        logger.debug(f"Raw pH sensor response: {response}")
         
         # Parse pH value
         try:
             ph_value = float(response)
+            logger.debug(f"Parsed pH value: {ph_value}")
         except ValueError:
+            logger.error(f"Invalid pH reading: {response}")
             raise RuntimeError(f"Invalid pH reading: {response}")
         
         # Determine status based on typical hydroponic ranges
@@ -103,6 +107,8 @@ class PHReal(BaseSensor):
             status = "high"
             status_message = "pH is too high (alkaline)"
         
+        logger.info(f"pH reading: {ph_value} ({status})")
+        
         return {
             "ph": round(ph_value, 2),
             "status": status,
@@ -115,10 +121,19 @@ class PHReal(BaseSensor):
         Async wrapper for I2C read
         
         Returns:
-            Sensor reading dictionary
+            Sensor reading dictionary with graceful fallback for unavailable hardware
         """
         if not self.is_initialized:
-            raise RuntimeError("pH sensor not initialized")
+            # Return safe placeholder values instead of crashing
+            logger.warning("pH sensor not initialized, returning placeholder values")
+            self.last_reading = {
+                "ph": 7.0,
+                "status": "hardware_not_connected",
+                "status_message": "pH sensor hardware not available",
+                "temperature_compensated": False
+            }
+            self.last_reading_time = datetime.now().isoformat()
+            return self.last_reading
         
         # Get event loop
         loop = asyncio.get_event_loop()
@@ -137,10 +152,7 @@ class PHReal(BaseSensor):
 if __name__ == "__main__":
     async def test():
         sensor = PHReal()
-        if sensor.is_initialized:
-            reading = await sensor.read()
-            print(f"pH Reading: {reading}")
-        else:
-            print("Sensor not initialized")
+        reading = await sensor.read()
+        print(f"pH Reading: {reading}")
     
     asyncio.run(test())
