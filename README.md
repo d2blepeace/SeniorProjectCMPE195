@@ -1,5 +1,3 @@
-
-```markdown
 # Smart Hydroponic Garden System
 
 **CMPE 195A/B Senior Project | Team Expedition 23**
