@@ -1,6 +1,3 @@
-Here's the cleaned version without emojis:
-
-```markdown
 # Smart Hydroponic Garden System
 
 **CMPE 195A/B Senior Project | Team Expedition 23**
@@ -402,5 +399,3 @@ This project is developed as part of CMPE 195A/B Senior Project at San Jose Stat
 
 ---
 ```
-
-All emojis removed! Ready to commit to your README.
