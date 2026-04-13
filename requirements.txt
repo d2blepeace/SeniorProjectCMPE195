@@ -21,6 +21,20 @@ pytest==9.0.2
 pytest-asyncio==1.3.0
 httpx==0.28.1
 
+# Hardware Dependencies (Raspberry Pi Only)
+# GPIO and I2C communication
+
+# lgpio==0.2.2.0
+# RPi.GPIO==0.7.1  # Alternative GPIO library (if needed)
+# smbus2==0.4.3
+
+# Adafruit sensor libraries
+# adafruit-circuitpython-bme280==2.6.20
+# adafruit-circuitpython-bme680==3.4.15
+# adafruit-extended-bus==1.0.2
+
+# Atlas Scientific pH sensor (if using)
+# pyserial==3.5  # For serial communication with pH sensor
 # Development (optional - comment out for production)
 # black==24.3.0
 # ruff==0.3.0
