@@ -1,3 +1,6 @@
+Here's the cleaned version without emojis:
+
+```markdown
 # Smart Hydroponic Garden System
 
 **CMPE 195A/B Senior Project | Team Expedition 23**
@@ -10,21 +13,20 @@ An IoT-enabled hydroponic monitoring system with real-time sensor data collectio
 
 - [Overview](#overview)
 - [Features](#features)
-- [System Architecture](#system-architecture)
 - [Quick Start](#quick-start)
 - [API Reference](#api-reference)
 - [Database Schema](#database-schema)
 - [Development](#development)
 - [Deployment](#deployment)
+- [Troubleshooting](#troubleshooting)
 - [Team](#team)
 
 ---
 
 ## Overview
 
-The Smart Hydroponic Garden System automates the monitoring of hydroponic growing environments by tracking:
-- **Temperature** (BME280 & BME680 sensors)
-- **Humidity** (BME280 & BME680 sensors)
+Automates monitoring of hydroponic growing environments by tracking:
+- **Temperature & Humidity** (BME280 & BME680 sensors)
 - **Air Quality** (BME680 sensor)
 - **pH Levels** (Atlas Scientific pH sensor)
 - **Atmospheric Pressure** (BME280 & BME680 sensors)
@@ -34,95 +36,14 @@ The system stores historical data, provides real-time visualization, and sends a
 ---
 
 ## Features
+
 - REST API with FastAPI
 - Mock sensor data generation (development/testing)
-- Background task auto-reads sensors every 60 seconds
-- Threshold configurations (plant profiles or custom settings)
+- Background auto-reads sensors every 60 seconds
+- Configurable thresholds (plant profiles or custom settings)
 - Interactive API documentation (Swagger UI)
 - CORS-enabled for frontend development
-
----
-
-## System Architecture
-
-### High-Level Overview
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    FRONTEND (Browser)                       │
-│                    - HTML/CSS/JavaScript                    │
-│                    - Chart.js for visualization             │
-└────────────────────────┬────────────────────────────────────┘
-                         │ HTTP/JSON
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│              BACKEND API (FastAPI - Python)                 │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │  API Routes                                          │   │
-│  │  - /api/health                                       │   │
-│  │  - /api/sensors/*                                    │   │
-│  │  - /api/configurations/*                             │   │
-│  │  - /api/alerts/*                                     │   │
-│  └──────────────────────────────────────────────────────┘   │
-│                         │                                   │
-│  ┌──────────────────────┴──────────────────────────────┐    │
-│  │                                                     │    │
-│  ▼                                                     ▼    │
-│  ┌────────────────────┐                  ┌──────────────┐   │
-│  │ Background Task    │                  │   Sensor     │   │
-│  │ (Data Collector)   │◄────────────────►│   Manager    │   │
-│  │                    │                  │              │   │
-│  │ Runs every 60s     │                  │ Mock/Real    │   │
-│  └────────┬───────────┘                  └──────┬───────┘   │
-│           │                                     │           │
-│           └─────────────┬───────────────────────┘           │
-│                         ▼                                   │
-│              ┌─────────────────────┐                        │
-│              │ Database Manager    │                        │
-│              │ (aiosqlite)         │                        │
-│              └──────────┬──────────┘                        │
-└─────────────────────────┼───────────────────────────────────┘
-                          ▼
-                ┌──────────────────┐
-                │ SQLite Database  │
-                │ (hydroponic.db)  │
-                │                  │
-                │ - sensor_readings│
-                │ - configurations │
-                │ - alerts         │
-                └──────────────────┘
-```
-
-### Component Diagram
-
-```
-Backend Components:
-
-┌──────────────────────────────────────────────────────┐
-│                 backend/src/                         │
-│                                                      │
-│  ┌────────────┐  ┌────────────┐  ┌──────────────┐    │
-│  │   main.py  │  │   config/  │  │    utils/    │    │
-│  │            │  │            │  │              │    │
-│  │ - Startup  │  │ - settings │  │ - logger     │    │
-│  │ - Lifespan │  │ - schema   │  │ - validators │    │
-│  └────────────┘  └────────────┘  └──────────────┘    │
-│                                                      │
-│  ┌────────────┐  ┌────────────┐  ┌──────────────┐    │
-│  │    api/    │  │  sensors/  │  │  services/   │    │
-│  │            │  │            │  │              │    │
-│  │ - routes   │  │ - mock     │  │ - collector  │    │
-│  │ - app      │  │ - hardware │  │ - alerts     │    │
-│  └────────────┘  └────────────┘  └──────────────┘    │
-│                                                      │
-│  ┌────────────┐                                      │
-│  │  storage/  │                                      │
-│  │            │                                      │
-│  │ - db_mgr   │                                      │
-│  │ - models   │                                      │
-│  └────────────┘                                      │
-└──────────────────────────────────────────────────────┘
-```
+- Remote access via ngrok tunnel
 
 ---
 
@@ -130,51 +51,60 @@ Backend Components:
 
 ### Prerequisites
 
+- Raspberry Pi (or any Linux machine)
 - Python 3.9+
-- Git
-- Virtual environment support
+- ngrok account (for remote access)
 
-### Installation
+### Installation on Raspberry Pi
 
 ```bash
 # 1. Clone repository
 git clone <repository-url>
 cd group-project-expedition-23
 
-# 2. Create virtual environment
+# 2. Create and activate virtual environment
 python3 -m venv venv
-
-# 3. Activate virtual environment
-# On Linux/Mac:
 source venv/bin/activate
-# On Windows:
-venv\Scripts\activate
 
-# 4. Install dependencies
+# 3. Install dependencies
 pip install -r requirements.txt
+```
 
-# 5. Set up environment variables
-cp .env.example .env
-# Edit .env if needed (defaults work for development)
+### Running with Systemd (Persistent)
 
-# 6. Start the backend server
-python -m backend.src.main
+The backend runs as a system service and automatically restarts on boot.
+
+```bash
+# Service is already configured and running
+sudo systemctl status backend
+
+# View logs
+sudo journalctl -u backend -f
+
+# Restart after code changes
+sudo systemctl restart backend
 ```
 
 ### Access the API
 
+**Production (Remote Access):**
+- **API Base:** `https://expedition-23.ngrok.app`
+- **Interactive Docs:** `https://expedition-23.ngrok.app/docs`
+- **Health Check:** `https://expedition-23.ngrok.app/api/health`
+
+**Local (on Raspberry Pi):**
 - **API Base:** `http://localhost:8000`
-- **Interactive Docs:** `http://localhost:8000/docs`
-- **Health Check:** `http://localhost:8000/api/health`
 
 ### Verify It's Working
 
 ```bash
-# In another terminal
+# Remote access
+curl https://expedition-23.ngrok.app/api/health
+
+# Local access (on Pi)
 curl http://localhost:8000/api/health
 
-# Should return:
-# {"status":"healthy","service":"Smart Hydroponic System API","timestamp":"..."}
+# Should return: {"status":"healthy"...}
 ```
 
 ---
@@ -182,37 +112,28 @@ curl http://localhost:8000/api/health
 ## API Reference
 
 ### Base URL
-```
-http://localhost:8000
-```
 
-### Endpoints Summary
+**Production:** `https://expedition-23.ngrok.app`  
+**Local:** `http://localhost:8000`
+
+### Key Endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/api/health` | GET | System health check |
-| `/api/status` | GET | Detailed system status |
 | `/api/sensors/current` | GET | Read sensors immediately |
 | `/api/sensors/latest` | GET | Latest readings from database |
-| `/api/sensors/historical` | GET | Historical data for charts |
-| `/api/configurations/` | GET | List all threshold configurations |
-| `/api/configurations/active` | GET | Get active configuration |
-| `/api/configurations/` | POST | Create new configuration |
-| `/api/configurations/{id}` | PATCH | Update configuration |
-| `/api/configurations/{id}/activate` | POST | Activate configuration |
-| `/api/configurations/{id}` | DELETE | Delete configuration |
-| `/api/alerts/` | GET | Get alerts |
-| `/api/alerts/{id}/read` | PATCH | Mark alert as read |
+| `/api/sensors/historical` | GET | Historical data (query: `?hours=24&sensor_type=bme280`) |
+| `/api/configurations/active` | GET | Get active threshold configuration |
+| `/api/configurations/{id}/activate` | POST | Activate a configuration |
+| `/api/alerts/` | GET | Get alerts (query: `?unread_only=true`) |
 
-### Example Requests
-
-#### Get Current Sensor Readings
+### Example Response
 
 ```bash
-curl http://localhost:8000/api/sensors/current
+curl https://expedition-23.ngrok.app/api/sensors/current
 ```
 
-**Response:**
 ```json
 {
   "status": "success",
@@ -221,16 +142,7 @@ curl http://localhost:8000/api/sensors/current
     "bme280": {
       "temperature": 22.5,
       "humidity": 58.3,
-      "pressure": 1013.2,
-      "unit_temp": "C",
-      "unit_humidity": "%",
-      "unit_pressure": "hPa"
-    },
-    "bme680": {
-      "temperature": 22.3,
-      "humidity": 59.1,
-      "air_quality": "Good",
-      "gas_resistance": 165432
+      "pressure": 1013.2
     },
     "ph": {
       "ph": 6.2,
@@ -240,113 +152,38 @@ curl http://localhost:8000/api/sensors/current
 }
 ```
 
-#### Get Historical Data
-
-```bash
-curl "http://localhost:8000/api/sensors/historical?hours=24&sensor_type=bme280"
-```
-
-#### Activate Configuration
-
-```bash
-curl -X POST http://localhost:8000/api/configurations/2/activate
-```
-
-**For complete API documentation, visit:** `http://localhost:8000/docs`
+**Complete documentation:** `https://expedition-23.ngrok.app/docs`
 
 ---
 
 ## Database Schema
 
-### Entity Relationship Diagram
-
-```
-┌──────────────────────┐
-│  sensor_readings     │
-├──────────────────────┤
-│ id (PK)              │
-│ sensor_type          │◄──── "bme280", "bme680", "ph"
-│ temperature          │
-│ humidity             │
-│ pressure             │
-│ gas_resistance       │
-│ air_quality          │
-│ ph                   │
-│ timestamp            │
-└──────────────────────┘
-
-┌─────────────────────────────┐
-│  threshold_configurations   │
-├─────────────────────────────┤
-│ id (PK)                     │
-│ name                        │◄──── "Lettuce", "My System"
-│ description                 │
-│ ph_min, ph_max              │
-│ temp_min, temp_max          │
-│ humidity_min, humidity_max  │
-│ is_active (UNIQUE=1)        │◄──── Only one active
-│ created_at, updated_at      │
-└─────────────────────────────┘
-
-┌──────────────────────┐
-│  alerts              │
-├──────────────────────┤
-│ id (PK)              │
-│ alert_type           │
-│ sensor_type          │
-│ message              │
-│ severity             │◄──── "info", "warning", "critical"
-│ reading_value        │
-│ threshold_min/max    │
-│ is_read, is_resolved │
-│ created_at           │
-└──────────────────────┘
-```
-
 ### Tables
 
 #### `sensor_readings`
-Stores historical sensor data. Updated every 60 seconds by background task.
+Stores historical sensor data (updated every 60s).
 
-**Columns:**
-- `id` - Primary key
+**Key Columns:**
 - `sensor_type` - "bme280", "bme680", or "ph"
-- `temperature` - Temperature in °C
-- `humidity` - Humidity percentage
-- `pressure` - Atmospheric pressure (hPa)
-- `gas_resistance` - Air quality sensor value
-- `air_quality` - "Good", "Moderate", "Poor"
+- `temperature`, `humidity`, `pressure` - Environmental data
 - `ph` - pH value (0-14)
-- `timestamp` - When reading was taken
+- `timestamp` - Reading time
 
 #### `threshold_configurations`
-Stores alert threshold settings (plant profiles or custom configurations).
+Stores alert threshold settings.
 
-**Columns:**
-- `id` - Primary key
-- `name` - Configuration name
-- `description` - Optional description
-- `ph_min`, `ph_max` - pH range
-- `temp_min`, `temp_max` - Temperature range (°C)
-- `humidity_min`, `humidity_max` - Humidity range (%)
-- `is_active` - Boolean (only one can be active)
-- `created_at`, `updated_at` - Timestamps
-
-**Constraint:** Only ONE configuration can have `is_active = 1` at a time.
+**Key Columns:**
+- `name` - Configuration name (e.g., "Lettuce", "Tomatoes")
+- `ph_min`, `ph_max`, `temp_min`, `temp_max`, etc. - Threshold ranges
+- `is_active` - Boolean (only ONE can be active)
 
 #### `alerts`
-Stores system alerts and notifications.
+Stores system notifications.
 
-**Columns:**
-- `id` - Primary key
-- `alert_type` - Type of alert
-- `sensor_type` - Which sensor triggered it
-- `message` - Human-readable message
+**Key Columns:**
 - `severity` - "info", "warning", "critical"
-- `reading_value` - Actual reading
-- `threshold_min`, `threshold_max` - Expected range
+- `message` - Human-readable alert
 - `is_read`, `is_resolved` - Status flags
-- `created_at`, `resolved_at` - Timestamps
 
 ---
 
@@ -356,303 +193,178 @@ Stores system alerts and notifications.
 
 ```
 group-project-expedition-23/
-├── backend/
-│   └── src/
-│       ├── main.py              # Application entry point
-│       ├── api/                 # REST API endpoints
-│       ├── sensors/             # Sensor abstraction layer
-│       ├── storage/             # Database layer
-│       ├── services/            # Background tasks
-│       ├── config/              # Configuration
-│       └── utils/               # Utilities
-├── frontend/                    # Web dashboard (TBD)
-├── docs/                        # Documentation
-├── tests/                       # Test suite
-├── data/                        # Runtime data (git-ignored)
-├── logs/                        # Application logs (git-ignored)
-├── requirements.txt             # Python dependencies
-├── .env.example                 # Environment template
-└── README.md                    # This file
+├── backend/src/
+│   ├── main.py              # Entry point
+│   ├── api/                 # REST API routes
+│   ├── sensors/             # Mock & hardware sensors
+│   ├── storage/             # Database management
+│   ├── services/            # Background tasks
+│   └── config/              # Settings & schema
+├── frontend/                # Web dashboard (TBD)
+├── tests/                   # Test suite
+├── data/                    # Runtime data (git-ignored)
+└── requirements.txt
 ```
 
-### Environment Variables
+### Frontend Integration
 
-Create a `.env` file in the project root:
+Use the ngrok URL in your frontend:
 
-```env
-# Application
-APP_NAME=Smart Hydroponic System
-DEBUG=True
-LOG_LEVEL=INFO
+```javascript
+const API_BASE_URL = 'https://expedition-23.ngrok.app';
 
-# API
-API_HOST=0.0.0.0
-API_PORT=8000
-
-# Database
-DATABASE_PATH=./data/hydroponic.db
-
-# Sensors
-USE_MOCK_SENSORS=True
-SENSOR_READ_INTERVAL=60
-
-# CORS
-ALLOWED_ORIGINS=*
+// Example API call
+fetch(`${API_BASE_URL}/api/sensors/latest`)
+  .then(res => res.json())
+  .then(data => console.log(data));
 ```
 
 ### Running Tests
 
 ```bash
-# Activate virtual environment
 source venv/bin/activate
-
-# Run all tests
 pytest
-
-# Run with coverage
-pytest --cov=backend
-
-# Run specific test file
-pytest tests/test_sensors.py
+pytest --cov=backend  # With coverage
 ```
 
-### Code Quality
-
-```bash
-# Format code
-black backend/
-
-# Check linting (optional)
-flake8 backend/
-
-# Type checking (optional)
-mypy backend/
-```
-
----
-
-## Data Flow
-
-### Background Data Collection
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Server Startup                       │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────┐
-│           Initialize Database                           │
-│   - Create tables if not exist                          │
-│   - Load default configurations                         │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────┐
-│       Start Background Data Collector                   │
-│   - Creates sensor_manager (mock or real)               │
-│   - Starts async collection loop                        │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ▼
-              ┌──────────────┐
-              │ Every 60s    │
-              └──────┬───────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────┐
-│           Read All Sensors                              │
-│   sensor_manager.read_all()                             │
-│                                                         │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐              │
-│   │  BME280  │  │  BME680  │  │    pH    │              │
-│   └────┬─────┘  └────┬─────┘  └────┬─────┘              │
-│        │             │             │                    │
-│        └─────────────┴─────────────┘                    │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────┐
-│         Store in Database                               │
-│   db_manager.insert_sensor_reading()                    │
-│                                                         │
-│   For each sensor type:                                 │
-│   - INSERT INTO sensor_readings                         │
-│   - Log success/failure                                 │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ▼
-              ┌──────────────┐
-              │ Wait 60s     │
-              └──────┬───────┘
-                     │
-                     └──────► Loop back to "Read All Sensors"
-```                     
-### Frontend Request Flow
-
-```
-┌─────────────┐
-│  Frontend   │  HTTP GET /api/sensors/latest
-│  (Browser)  ├───────────────────────────────┐
-└─────────────┘                               │
-                                              ▼
-                                   ┌──────────────────┐
-                                   │  API Route       │
-                                   │  sensors.py      │
-                                   └────────┬─────────┘
-                                            │
-                                            ▼
-                                   ┌──────────────────┐
-                                   │ Database Manager │
-                                   │ get_latest()     │
-                                   └────────┬─────────┘
-                                            │
-                                            ▼
-                                   ┌──────────────────┐
-                                   │ SQLite Query     │
-                                   └────────┬─────────┘
-                                            │
-                                            ▼
-                                   ┌──────────────────┐
-                                   │ JSON Response    │
-                                   └────────┬─────────┘
-                                            │
-                                            ▼
-┌─────────────┐                   ┌──────────────────┐
-│  Frontend   │◄──────────────────┤ Return Data      │
-│  Renders    │                   └──────────────────┘
-└─────────────┘
-```
 ---
 
 ## Deployment
 
-### Development (Current)
+### Current Production Setup (Raspberry Pi)
+
+The system is deployed with:
+
+**Backend Service (backend.service):**
+- Runs FastAPI application on port 8000
+- Auto-starts on boot
+- Auto-restarts on failure
+- Uses real hardware sensors
+
+**ngrok Tunnel (ngrok.service):**
+- Exposes backend to internet via `https://expedition-23.ngrok.app`
+- Persistent URL (doesn't change on restart)
+- Auto-starts on boot
+
+### Managing Services
 
 ```bash
-# Use mock sensors
-python -m backend.src.main
+# Check service status
+sudo systemctl status backend
+sudo systemctl status ngrok
+
+# View logs
+sudo journalctl -u backend -f
+sudo journalctl -u ngrok -f
+
+# Restart services
+sudo systemctl restart backend
+sudo systemctl restart ngrok
+
+# Stop services
+sudo systemctl stop backend
+sudo systemctl stop ngrok
 ```
 
-### Production (Raspberry Pi - Future)
+### Hardware Configuration
 
-```bash
-# 1. Install hardware dependencies
-pip install adafruit-circuitpython-bme280 adafruit-circuitpython-bme680
+Update `.env` for production:
 
-# 2. Update .env
+```env
+# Use real hardware sensors
 USE_MOCK_SENSORS=False
 
-# 3. Run server
-python -m backend.src.main
-```
-
-### Run as System Service (systemd)
-
-Create `/etc/systemd/system/hydroponic.service`:
-
-```ini
-[Unit]
-Description=Smart Hydroponic System
-After=network.target
-
-[Service]
-Type=simple
-User=pi
-WorkingDirectory=/home/pi/group-project-expedition-23
-Environment="PATH=/home/pi/group-project-expedition-23/venv/bin"
-ExecStart=/home/pi/group-project-expedition-23/venv/bin/python -m backend.src.main
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Enable and start:
-```bash
-sudo systemctl enable hydroponic
-sudo systemctl start hydroponic
-sudo systemctl status hydroponic
+# Sensor read interval (seconds)
+SENSOR_READ_INTERVAL=60
 ```
 
 ---
 
 ## Troubleshooting
 
-### Server Won't Start
+### Backend Service Issues
 
-**Issue:** `ModuleNotFoundError: No module named 'fastapi'`
+**Issue:** Service won't start
 
-**Solution:**
 ```bash
+# Check detailed logs
+sudo journalctl -u backend -n 50
+
+# Common fixes:
+# 1. Verify Python path
+which python3
+
+# 2. Check file permissions
+ls -la ~/group-project-expedition-23
+
+# 3. Restart service
+sudo systemctl restart backend
+```
+
+**Issue:** Import errors
+
+```bash
+# Reinstall dependencies
+cd ~/group-project-expedition-23
 source venv/bin/activate
 pip install -r requirements.txt
+sudo systemctl restart backend
 ```
 
----
+### ngrok Tunnel Issues
 
-**Issue:** Port 8000 already in use
+**Issue:** Tunnel not accessible
 
-**Solution:**
 ```bash
-# Find process
-lsof -i :8000
+# Check ngrok service
+sudo systemctl status ngrok
 
-# Kill it
-kill -9 <PID>
+# Verify ngrok is running
+curl http://localhost:4040/api/tunnels
 
-# Or use different port
-uvicorn backend.src.main:app --port 8001
+# Restart ngrok
+sudo systemctl restart ngrok
 ```
 
----
+**Issue:** URL not working
 
-### Database Errors
-
-**Issue:** Database file not found
-
-**Solution:**
 ```bash
-# Database is created automatically on first run
-# Make sure you're running from project root
-cd ~/group-project-expedition-23
-python -m backend.src.main
+# Verify correct URL in service file
+sudo cat /etc/systemd/system/ngrok.service
+
+# Should show: --url=expedition-23.ngrok.app 8000
 ```
 
----
+### Database Issues
+
+**Issue:** No data being stored
+
+```bash
+# Check if backend is running
+sudo systemctl status backend
+
+# View data collector logs
+sudo journalctl -u backend | grep "collector"
+
+# Verify database file exists
+ls -la ~/group-project-expedition-23/data/
+```
 
 **Issue:** Database locked
 
-**Solution:**
 ```bash
-# Close any SQLite browser/tool accessing the database
-# Restart the server
-```
-
----
-
-### No Data Accumulating
-
-**Issue:** Background task not running
-
-**Solution:**
-```bash
-# Check server logs for "Stored X readings"
-# Verify data collector status:
-curl http://localhost:8000/ | jq '.data_collector'
-
-# Should show: "is_running": true
+# Close any SQLite browser tools
+# Restart backend service
+sudo systemctl restart backend
 ```
 
 ---
 
 ## Additional Resources
 
-- **Interactive API Docs:** `http://localhost:8000/docs`
-- **ReDoc API Docs:** `http://localhost:8000/redoc`
+- **Interactive API Docs:** `https://expedition-23.ngrok.app/docs`
 - **FastAPI Documentation:** https://fastapi.tiangolo.com/
-- **Raspberry Pi Setup:** `docs/HARDWARE_SETUP.md`
-- **Frontend Integration:** `docs/FRONTEND_API_GUIDE.md`
+- **ngrok Documentation:** https://ngrok.com/docs
 
 ---
 
@@ -662,7 +374,7 @@ This project is developed as part of CMPE 195A/B Senior Project at San Jose Stat
 
 ---
 
-##  Team
+## Team
 
 **Team Expedition 23**
 
@@ -689,4 +401,6 @@ This project is developed as part of CMPE 195A/B Senior Project at San Jose Stat
 - San Jose State University Computer Engineering Department
 
 ---
+```
 
+All emojis removed! Ready to commit to your README.
