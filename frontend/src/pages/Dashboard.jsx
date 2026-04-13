@@ -43,16 +43,19 @@ function Dashboard({ current, thresholds, charts }) {
                     title="Temperature Chart"
                     unit="°C"
                     data={charts?.temperature?.data ?? []}
+                    timestamps={charts?.temperature?.timestamps ?? []} 
                 />
                 <SensorChart
                     title="Humidity Chart"
                     unit="%"
                     data={charts?.humidity?.data ?? []}
+                    timestamps={charts?.temperature?.timestamps ?? []} 
                 />
                 <SensorChart
                     title="pH Chart"
                     unit=""
                     data={charts?.ph?.data ?? []}
+                    timestamps={charts?.temperature?.timestamps ?? []} 
                 />
             </section>
         </main>
