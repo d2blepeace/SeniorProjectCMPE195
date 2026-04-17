@@ -70,7 +70,7 @@ Open the Local URL shown (commonly `http://localhost:5173/`) to view the dashboa
   - In **Settings**, after changing a threshold value, you must **refresh the page** for the dashboard to reflect the updated thresholds (current limitation).
   - Only the **“Standard Threshold Profile”** can be applied right now. New profiles can be created, but they **cannot be activated/used yet**.
   - Only the **“Temperature”** and **“Humidity”** readings are live data,  **“pH”** is a placeholder for now.
-- **Video (API call testing):** <link>
+- **Video (API call testing):** [YouTube Link](https://youtu.be/-H160rNT_Qo)
 
 - Screenshots/GIFs:
   - Main dashboard showing sensor readings
