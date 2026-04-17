@@ -64,6 +64,7 @@ Open the Local URL shown (commonly `http://localhost:5173/`) to view the dashboa
 
 ## Demo
 - **Video (Frontend UI walkthrough):** [YouTube Link](https://youtu.be/t5Pe3VHo7Zo)
+
   **Notes:**
   - There is an initialization period where the system may display as **“Offline”** immediately after first connecting.
   - On the main dashboard graphs, hovering over the chart shows a **tooltip** with the reading **timestamp**.
