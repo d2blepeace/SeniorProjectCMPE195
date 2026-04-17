@@ -64,7 +64,8 @@ Open the Local URL shown (commonly `http://localhost:5173/`) to view the dashboa
 
 ## Demo
 - **Video (Frontend UI walkthrough):** [YouTube Link](https://youtu.be/t5Pe3VHo7Zo)
-**Notes:**
+
+  **Notes:**
   - There is an initialization period where the system may display as **“Offline”** immediately after first connecting.
   - On the main dashboard graphs, hovering over the chart shows a **tooltip** with the reading **timestamp**.
   - In **Settings**, after changing a threshold value, you must **refresh the page** for the dashboard to reflect the updated thresholds (current limitation).
@@ -96,4 +97,3 @@ Open the Local URL shown (commonly `http://localhost:5173/`) to view the dashboa
 - Live updates (WebSockets/SSE) for real-time sensor streaming
 - Alert management UI (acknowledge/resolve/history)
 - Automation controls and scheduling for hydroponic hardware
-```
