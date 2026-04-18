@@ -64,7 +64,7 @@ VITE v7.3.1  ready in 500 ms
 Open the Local URL shown (commonly `http://localhost:5173/`) to view the dashboard.
 
 ## Demo
-- **Video (Frontend UI walkthrough):** [YouTube Link](https://youtu.be/t5Pe3VHo7Zo)
+- **Video (Frontend UI walkthrough):** [YouTube Link](https://youtu.be/SXYAv3ERbVE?si=7_VTFTLSeXw4wd_a)
 
   **Notes:**
   - There is an initialization period where the system may display as **“Offline”** immediately after first connecting.
