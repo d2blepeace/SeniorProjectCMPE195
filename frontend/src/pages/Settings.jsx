@@ -151,7 +151,7 @@ function Settings() {
                         profile={profile}
                         onEdit={handleEdit}
                         onDuplicate={handleDuplicate}
-                        onActivate={handleActivate}
+                        onUse={handleActivate}
                         onDelete={handleDelete}
                     />
                 ))}

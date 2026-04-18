@@ -70,8 +70,8 @@ Open the Local URL shown (commonly `http://localhost:5173/`) to view the dashboa
   - There is an initialization period where the system may display as **“Offline”** immediately after first connecting.
   - On the main dashboard graphs, hovering over the chart shows a **tooltip** with the reading **timestamp**.
   - In **Settings**, after changing a threshold value, you must **refresh the page** for the dashboard to reflect the updated thresholds.
-  - Only the **“Standard Threshold Profile”** can be applied right now. New profiles can be created, but they **cannot be activated/used yet**.
   - Only the **“Temperature”** and **“Humidity”** readings are live data,  **“pH”** is a placeholder for now.
+  - There is no option to convert the **temperature** unit from C to F yet.
 - **Video (API call testing):** [YouTube Link](https://youtu.be/-H160rNT_Qo)
 
 - Screenshots/GIFs:
