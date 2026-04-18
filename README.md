@@ -3,7 +3,7 @@
 ## Team
 - Hoa Tuong Minh Nguyen (GitHub: @MinhHoaNguyen)
 - Vy Lo Phuong Tran (GitHub: @vlotran)
-- [Team Member 3] (GitHub: @username)
+- Thai Nguyen (GitHub: @d2blepeace)
 - [Team Member 4] (GitHub: @username)
 
 ## Project Description
@@ -20,6 +20,7 @@ The Smart Hydroponic Garden System dashboard displays sensor data collected from
 - Hardware automation controls (pumps/lights/nutrient dosing)
 - Advanced analytics and reporting
 - Cloud hosting for the frontend (currently runs locally; users cannot access it via a public URL yet)
+- Options to convert units: F -> C, C -> F on Dashboard's value of sensors.
 
 ## Prerequisites
 - **Node.js 20.19+ (recommended: Node 20 LTS)**  
