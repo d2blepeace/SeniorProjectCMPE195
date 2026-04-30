@@ -4,7 +4,7 @@
 - Hoa Tuong Minh Nguyen (GitHub: @MinhHoaNguyen)
 - Vy Lo Phuong Tran (GitHub: @vlotran)
 - Thai Nguyen (GitHub: @d2blepeace)
-- [Team Member 4] (GitHub: @username)
+- Ishmeet Kaur  (GitHub: @username)
 
 ## Project Description
 The Smart Hydroponic Garden System dashboard displays sensor data collected from our Raspberry Pi monitoring system, including environmental readings and system status. The frontend connects to a FastAPI backend hosted on the Raspberry Pi server to fetch and visualize sensor readings.
