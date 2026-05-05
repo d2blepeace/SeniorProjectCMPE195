@@ -9,6 +9,9 @@
 ## Project Description
 The Smart Hydroponic Garden System dashboard displays sensor data collected from our Raspberry Pi monitoring system, including environmental readings and system status. The frontend connects to a FastAPI backend hosted on the Raspberry Pi server to fetch and visualize sensor readings.
 
+## High Level Architecture
+![High_Level_Architecture_Diagram](Hydroponic_High_Level.png)
+
 ## Proof of Concept Scope
 **This PoC demonstrates (Frontend):**
 - A React dashboard UI running locally via Vite
