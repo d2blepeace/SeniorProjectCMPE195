@@ -71,13 +71,18 @@ export function mapLatestReadingsToCurrent(latestResponse) {
 export function mapHistoricalRowsToMetricChart(historicalResponse, metricKey) {
     const rows = historicalResponse?.data || [];
 
-    return rows
+    const dataPoints = rows
         .filter((row) => row[metricKey] !== null && row[metricKey] !== undefined)
         .map((row) => ({
             timestamp: row.timestamp,
             value: row[metricKey],
         }))
         .reverse();
+
+    return {
+        data: dataPoints.map(point => point.value),
+        timestamps: dataPoints.map(point => point.timestamp)
+    };
 }
 
 export function buildDashboardData({

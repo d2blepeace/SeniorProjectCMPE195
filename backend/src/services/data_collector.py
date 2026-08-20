@@ -40,6 +40,7 @@ class DataCollector:
         self.sensor_manager = SensorFactory.get_sensor_manager(
             use_mock=settings.use_mock_sensors
         )
+        logger.info(f"Active sensors: {list(self.sensor_manager.sensors.keys())}")
 
         # Start background task
         self.is_running = True

@@ -34,9 +34,9 @@ class SensorFactory:
         else:
             # Import real hardware sensors
             try:
-                from .hardware.bme280_real import BME280Real
-                from .hardware.bme680_real import BME680Real
-                from .hardware.ph_real import PHReal
+                from .hardware.bme280 import BME280Real
+                from .hardware.bme680 import BME680Real
+                from .hardware.ph import PHReal
 
                 print("⚡ Using REAL hardware sensors (production mode)")
 

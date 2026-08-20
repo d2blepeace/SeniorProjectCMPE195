@@ -271,7 +271,7 @@ class DatabaseManager:
                     """
                     INSERT INTO threshold_configurations 
                     (name, description, ph_min, ph_max, temp_min, temp_max, 
-                     humidity_min, humidity_max)
+                        humidity_min, humidity_max)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                     (
@@ -449,7 +449,7 @@ class DatabaseManager:
                     """
                     INSERT INTO alerts 
                     (alert_type, sensor_type, message, severity, 
-                     reading_value, threshold_min, threshold_max)
+                        reading_value, threshold_min, threshold_max)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
                     (
