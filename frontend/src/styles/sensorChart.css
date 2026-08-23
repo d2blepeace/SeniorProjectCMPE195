@@ -55,8 +55,7 @@
     flex: none;
     height: 120px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
     position: relative; 
 }
 
@@ -105,11 +104,37 @@
 }
 
 @media (max-width: 900px) {
-  .sensor-chart-grid {
+.sensor-chart-grid {
     grid-template-columns: 1fr;
-  }
+}
 
-  .sensor-chart-card.expanded {
+.sensor-chart-card.expanded {
     grid-column: auto;
-  }
+}
+}
+
+/*New*/
+.chart-axis-labels {
+    position: relative;
+    width: 42px;
+    flex-shrink: 0;
+}
+
+.axis-label {
+    position: absolute;
+    right: 4px;
+    transform: translateY(-50%);
+    font-size: 0.65rem;
+    opacity: 0.55;
+    white-space: nowrap;
+}
+
+.chart-plot-area {
+    position: relative;
+    flex:1;
+    height: 100%;
+}
+.chart-gridline {
+    stroke: rgb(255, 255, 255, 0.1);
+    stroke-width: 1;
 }

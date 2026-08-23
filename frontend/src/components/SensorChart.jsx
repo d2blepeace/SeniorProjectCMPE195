@@ -14,16 +14,24 @@ function SensorChart({title, unit, data = [], timestamps = []}) {
     const bottomPadding = 15;
     const usableHeight = 100 - topPadding - bottomPadding;
 
-    // value of min, max and range of data
-    const maxValue = Math.max(...data, 1);
-    const minValue = Math.min(...data, 0);
+    // FIX: only fallback to 0/1 when there are no data at all.
+    const maxValue = data.length ? Math.max(...data) : 1;
+    const minValue = data.length ? Math.min(...data) : 0;
     const range = maxValue - minValue || 1;
+
+    // shared value -> y% mapping
+    const getY = (value) => topPadding + (1 - (value - minValue) / range) * usableHeight;
 
     const points = data.map((value, index) => {
         const x = (index / (data.length - 1 || 1)) * 100;
-        const normalized = (value - minValue) / range;
-        const y = topPadding + (1 - normalized) * usableHeight;
-        return { x, y, value, timestamp: timestamps[index] };
+        return {x, y: getY(value), value, timestamps: timestamps[index] };
+    });
+
+    // NEW: evenly spaced tick value across actual data range
+    const tickCount = 4; //for 5 gridlines total
+    const ticks = Array.from({ length: tickCount + 1 }, (_, i) => {
+        const value = minValue + (range * i ) / tickCount;
+        return {value: Math.round(value * 10) / 10, y: getY(value)};
     });
 
     const polylinePoints = points.map(p => `${p.x},${p.y}`).join(" ");
@@ -43,7 +51,7 @@ function SensorChart({title, unit, data = [], timestamps = []}) {
         day: 'numeric', 
         hour: '2-digit', 
         minute: '2-digit',
-      });
+    });
     };
 
     return (
@@ -58,25 +66,49 @@ function SensorChart({title, unit, data = [], timestamps = []}) {
             </div>
 
             <div className="sensor-chart-body">
-                <svg
+                {/* NEW: axis label column, rendered as HTML (not SVG) so text
+                    doesn't get stretched by preserveAspectRatio="none" */}
+                <div className="chart-axis-labels">
+                    {ticks.map((ticks, i) => (
+                        <span key={i} className="axis-label" style= {{top: `${ticks.y}%` }}>
+                            {ticks.value}{unit}
+                        </span>
+                    ))}
+                </div>
+            
+            {/*New: wrapper so tooltip %-positioning stays relative to just the plot area*/}
+            <div className="chart-plot-area">
+                <svg 
                     viewBox="0 0 100 100"
                     preserveAspectRatio="none"
                     className="chart-svg"
                 >
-                    {/* Line chart */}
+                    {/*NEW: gridline that will sit ontop */}
+                    {ticks.map((ticks, i) => (
+                        <line
+                            key = {i}
+                            x1="0" y1={ticks.y}
+                            x2="100" y2={ticks.y}
+                            className="chart-gridline"
+                            vectorEffect="non-scaling-stroke"
+                        />
+                    ))}
+
+                    {/*Line chart*/}
                     <polyline
-                        fill="none"
-                        stroke="currentColor"
+                        fill = "none"
+                        stroke = "currentColor"
                         strokeWidth="2"
                         points={polylinePoints}
+                        vectorEffect="non-scaling-stroke"
                     />
 
-                    {/* Invisible hover points */}
-                    {points.map((point, index) => (
+                    {/*Invinsible hover points*/}
+                    {points.map((points, index) => (
                         <circle
                             key={index}
-                            cx={point.x}
-                            cy={point.y}
+                            cx={points.x}
+                            cy={points.y}
                             r="3"
                             fill="currentColor"
                             opacity={hoveredPoint === index ? 1 : 0}
@@ -88,11 +120,12 @@ function SensorChart({title, unit, data = [], timestamps = []}) {
                                 e.stopPropagation();
                                 setHoveredPoint(null);
                             }}
-                            style={{ cursor: 'pointer' }}
+                            style={{cursor: 'pointer'}}
                         />
                     ))}
                 </svg>
-
+                
+            </div>
                 {/* Tooltip */}
                 {hoveredPoint !== null && (
                     <div 
