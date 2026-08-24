@@ -16,11 +16,18 @@ function App() {
     // "settings"  = show threshold profile management
     const [activeTab, setActiveTab] = useState("dashboard");
 
+    // Dark / Light mode
+    const [darkMode, setDarkMode] = useState(false);
     // Loading State
     if (loading) {
         return (
             <>
-                <Navbar deviceName="Loading..." status="offline" />
+                <Navbar 
+                    deviceName="Loading..." 
+                    status="offline" 
+                    darkMode={darkMode} 
+                    onToggleDarkMode={() => setDarkMode(!darkMode)}
+                />
                 <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
                 <main className="dashboard">
                     {activeTab === "dashboard" ? (
@@ -37,7 +44,12 @@ function App() {
     if (error) {
         return (
             <>
-                <Navbar deviceName="System Error" status="offline" />
+                <Navbar 
+                    deviceName="System Error" 
+                    status="offline"
+                    darkMode={darkMode}
+                    onToggleDarkMode={() => setDarkMode(!darkMode)}
+                />
                 <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
                 <main className="dashboard">
                     {activeTab === "dashboard" ? (
@@ -58,6 +70,8 @@ function App() {
                 deviceName={device?.name || "Smart Hydroponic System"}
                 status={device?.status || "offline"}
                 lastUpdated={device?.lastUpdated}
+                darkMode={darkMode}
+                onToggleDarkMode={() => setDarkMode(!darkMode)}
             />
 
             {/* Tab Bar - always visible, switches between pages */}

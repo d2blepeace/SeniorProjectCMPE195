@@ -5,6 +5,8 @@
     gap: 12;
     color: whitesmoke;
     border-bottom: 1px solid aqua;
+
+    position: relative;
 }
 
 .nav-title{
@@ -39,3 +41,32 @@
     color: red;
 }
 
+/* Dark / Light mode button */
+.theme-toggle {
+    position: absolute;
+    right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #808080;
+    border: none;
+    color: inherit;
+
+    cursor: pointer;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+/* dark/light icon */
+.theme-toggle img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.theme-toggle:hover {
+    opacity: 0.7;
+}
