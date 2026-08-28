@@ -24,7 +24,7 @@ function SensorChart({title, unit, data = [], timestamps = []}) {
 
     const points = data.map((value, index) => {
         const x = (index / (data.length - 1 || 1)) * 100;
-        return {x, y: getY(value), value, timestamps: timestamps[index] };
+        return {x, y: getY(value), value, timestamp: timestamps[index] };
     });
 
     // NEW: evenly spaced tick value across actual data range
