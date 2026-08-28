@@ -48,7 +48,7 @@ class DataCollector:
 
         sensor_type = "MOCK" if settings.use_mock_sensors else "REAL"
         logger.info(
-            f"⏰ Data collector started ({sensor_type} sensors, "
+            f"Data collector started ({sensor_type} sensors, "
             f"interval: {settings.sensor_read_interval}s)"
         )
 
@@ -66,7 +66,7 @@ class DataCollector:
             except asyncio.CancelledError:
                 pass
 
-        logger.info(f"🛑 Data collector stopped (collected {self.read_count} readings)")
+        logger.info(f"Data collector stopped (collected {self.read_count} readings)")
 
     async def _collection_loop(self):
         """
@@ -75,7 +75,7 @@ class DataCollector:
         Continuously reads sensors at configured interval
         Works identically for mock and real sensors
         """
-        logger.info("📊 Starting sensor collection loop...")
+        logger.info("Starting sensor collection loop...")
 
         while self.is_running:
             try:
