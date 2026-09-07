@@ -11,6 +11,7 @@ Logic, no IO needed for this class
 
 from enum import Enum
 from dataclasses import dataclass
+from typing import Dict, Optional, Tuple
 
 RANK = {"normal": 0, "warning": 1, "danger": 2}
 
@@ -39,6 +40,12 @@ class Transition:
     def should_notify(self) -> bool:
         """Only push notification on switching to DANGER"""
         return self.to_state == AlertState.DANGER
+
+@dataclass
+class MetricState:
+    state: AlertState = AlertState.NORMAL
+    pending: Optional[AlertState] = None
+    pending_count: int = 0
 
 class AlertEvaluator:
     def __init__ (
@@ -76,4 +83,36 @@ class AlertEvaluator:
             if not (lo + buf + pad <= value <= hi - buf - pad):
                 return  AlertState.WARNING
 
+    def evaluate(self, sensor_type, metric, value, config) -> Optional[Transition]:
+        """Return a Transition only on a confirmed state change"""
+        if metric not in METRIC_BOUNDS:
+            return None
+
+        lo_field, hi_field, = METRIC_BOUNDS[metric]
+        lo, hi = getattr(config, lo_field), getattr(config, hi_field)
+
+        key = (sensor_type, metric)
+        ms = self._states.setdefault(key, MetricState())
+        observed = self.classify(value, lo, hi, ms.state)
+
+        if observed == ms.state:
+            ms.pending_count += 1
+        else:
+            ms.pending, ms.pending_count = None, 0
+
+        #debounce: one noisy reading should not move us
+        if observed == ms.pending:
+            ms.pending_count += 1
+        else:
+            ms.pending, ms.pending_count = observed, 1
+
+        if ms.pending_count < self.confirm_readings:
+            return None
+
+        previous, ms.state = ms.state, observed
+        ms.pending, ms.pending_count = None, 0
+        return Transition(sensor_type, metric, previous, observed, value, lo, hi)
+
     
+
+
