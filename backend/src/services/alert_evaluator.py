@@ -113,6 +113,12 @@ class AlertEvaluator:
         ms.pending, ms.pending_count = None, 0
         return Transition(sensor_type, metric, previous, observed, value, lo, hi)
 
-    
-
+    def reset(self, sensor_type: str=None, metric: str=None):
+        """ Clear tracked state. Call with no args when active threshold 
+            profile changed by user
+        """
+        if sensor_type is None:
+            self._state.clear()
+        else:
+            self._state.pop((sensor_type, metric), None)
 
