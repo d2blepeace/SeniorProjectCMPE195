@@ -1,5 +1,6 @@
 /**
  * Navigation Bar will display
+ * - Top right: Dark/Light mode toggle button
  * - First row: Project Title
  * - Second row:
  *      - Left Side: Device name: <StatusIcon> [Online | Offline]
@@ -8,10 +9,12 @@
 import React from "react";
 import onlineIcon from "../assets/icons/online.png";
 import offlineIcon from "../assets/icons/offline.png";
+import darkModeIcon from "../assets/icons/darkmode.png";
+import lightModeIcon from "../assets/icons/lightmode.png";
 import "../styles/typography.css";
 import "../styles/navbar.css";
 
-function Navbar({ deviceName, status, lastUpdated }) {
+function Navbar({ deviceName, status, lastUpdated, darkMode, onToggleDarkMode, }) {
   //Determine the status icon based on the connection status
   const statusIcon = status === "online" ? onlineIcon : offlineIcon;
   const statusClass = status === "online" ? "status-online" : "status-offline";
@@ -20,6 +23,19 @@ function Navbar({ deviceName, status, lastUpdated }) {
 
   return (
     <nav className="navbar">
+
+      {/* Dark / Light Mode */}
+      <button
+        className="theme-toggle"
+        onClick={onToggleDarkMode}
+      >
+        <img
+          src={darkMode ? lightModeIcon : darkModeIcon}
+          alt=""
+        />
+        <span>{darkMode ? "Light" : "Dark"}</span>
+      </button>
+
       {/* TITLE */}
       <div className="nav-title">Smart Hydroponic Gardening System</div>
 

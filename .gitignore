@@ -60,9 +60,4 @@ htmlcov/
 dist/
 build/
 
-<<<<<<< HEAD
-# .env files
-=======
 .env
->>>>>>> 011f5b8699084deb6378da0c535985cccc2719ab
-.env.example
